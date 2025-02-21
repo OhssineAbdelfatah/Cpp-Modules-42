@@ -1,11 +1,11 @@
 CC = c++ 
 
-CFLAGS = -Wall -Werror -Wextra 
+CFLAGS = -Wall -Werror -Wextra  -std=c++98
 
-CFILES = megaphone.cpp
+CFILES = main.cpp
 OBJ = $(CFILES:.cpp=.o)
 
-NAME = megaphone
+NAME = phonebook
 
 all : $(NAME)
 
