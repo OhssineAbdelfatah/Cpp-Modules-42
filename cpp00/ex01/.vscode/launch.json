@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/aohssine/cpp/cpp00",
-      "program": "/Users/aohssine/cpp/cpp00/build/Debug/outDebug"
+      "cwd": "/Users/aohssine/cpp/cpp00/ex01",
+      "program": "/Users/aohssine/cpp/cpp00/ex01/build/Debug/outDebug"
     }
   ]
 }
