@@ -14,8 +14,10 @@ int main()
         //if(!std::getline(std::cin,  buff))
           //  break;
         std::getline(std::cin,  buff);
-        if(std::cin.eof())
+        if(std::cin.eof()){
+            std::cout << "end of file reached !! or you enter ctnrl D " << std::endl;
             break;
+        }
         if(buff == "EXIT" || buff == "exit")
             break;
         else if(buff == "ADD" || buff == "add")
