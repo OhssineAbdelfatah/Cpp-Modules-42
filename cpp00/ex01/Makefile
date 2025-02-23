@@ -1,19 +1,22 @@
 CC = c++ 
 
-CFLAGS = -Wall -Werror -Wextra 
+CFLAGS = -Wall -Werror -Wextra  -std=c++98
 
-CFILES = megaphone.cpp
+CFILES = main.cpp Contacts.cpp
+
+HEADERS = Contacts.hpp
+
 OBJ = $(CFILES:.cpp=.o)
 
-NAME = megaphone
+NAME = phonebook
 
 all : $(NAME)
 
-%.o : %.c  Makefile
+%.o : %.c $(HEADERS) Makefile
 	$(CC)  $(CFLAGS) -c  $< -o $@
 
 $(NAME) : $(OBJ) 
-	$(CC) $^ $(CFLAGS) -o $@
+	$(CC) $(CFLAGS) -o $@ $^
 
 clean :
 	rm -rf  $(OBJ)
