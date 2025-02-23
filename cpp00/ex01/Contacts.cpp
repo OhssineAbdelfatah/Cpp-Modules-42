@@ -54,6 +54,11 @@ void Contacts::addContact()
 
     std::cout << "First Name " << std::endl;
     std::getline(std::cin ,fn );
+    if(std::cin.eof() || fn.empty())
+    {
+        std::cout << "empty filed : enter your first name" << std::endl ;
+        continue;
+    }
     setFirstName(fn);
 
     std::string ln;
