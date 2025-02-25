@@ -1,4 +1,5 @@
 #include"Contacts.hpp"
+#include"Utils.hpp"
 
 std::string Contacts::getFirstName() const{
     return firstName;
@@ -23,7 +24,7 @@ void Contacts::setNickName(std::string nickName){
 }
 
 std::string Contacts::getDarkestSecret() const{
-    return darkestSecret;
+    return Contacts::darkestSecret;
 }
 
 void Contacts::setDarkestSecret(std::string darkestSecret) {
@@ -70,11 +71,12 @@ void Contacts::addContact()
     std::cout << "darkest Secret " << std::endl;
     std::getline(std::cin, ds );
     
-    if(std::cin.eof() || fn.empty() || ln.empty() || nn.empty() || pn.empty() || ds.empty())
+    //if(std::cin.eof() || !validInput(fn) || ln.empty() || nn.empty() || pn.empty() || ds.empty())
+    if(std::cin.eof() || !Utils::validInput(fn) || !utils::validInput(ln) ||  !Utils::validInput(nn) ||  !Utils::validInput(pn) ||  !Utils::validInput(ds))
     {
-        std::cout << "empty filed : enter your first name" << std::endl ;
+        std::cout << "empty filed : contact ignored" << std::endl ;
         return;
-    }else if (ltrim(rtrim(fn, ' '), ' ') == )
+    }
     setFirstName(fn);
     setLastName(ln);
     setNickName(nn);

@@ -15,7 +15,7 @@ int main()
           //  break;
         std::getline(std::cin,  buff);
         if(std::cin.eof()){
-            std::cout << "end of file reached !! or you enter ctnrl D " << std::endl;
+            std::cout << "end of file reached !! or you enter cntrl D " << std::endl;
             break;
         }
         if(buff == "EXIT" || buff == "exit")

@@ -2,7 +2,7 @@ CC = c++
 
 CFLAGS = -Wall -Werror -Wextra  -std=c++98
 
-CFILES = main.cpp Contacts.cpp
+CFILES = main.cpp Contacts.cpp Utils.cpp
 
 HEADERS = Contacts.hpp
 
