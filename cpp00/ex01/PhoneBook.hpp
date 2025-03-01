@@ -4,7 +4,7 @@
 
 
 class Phonebook {
-    private :
+    public :
         // Con contact[8];
         Contacts inst[8];
         int contacts_number;

@@ -1,6 +1,7 @@
 #ifndef CONTACTS_H
 #define CONTACTS_H
 #include<iostream>
+#include<string>
 
 class Contacts {
     private :
@@ -28,6 +29,9 @@ class Contacts {
 
         std::string getDarkestSecret() const;
         void setDarkestSecret(std::string darkestSecret);
+
+	    std::string validInput(std::string value);
+    
 };
 
 #endif 
