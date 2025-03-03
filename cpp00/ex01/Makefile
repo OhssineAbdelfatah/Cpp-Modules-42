@@ -1,22 +1,22 @@
 CC = c++ 
 
-CFLAGS = -Wall -Werror -Wextra  -std=c++98
+CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 
-CFILES = main.cpp Contacts.cpp
+CPPFILES = main.cpp Contacts.cpp Phonebook.cpp
 
-HEADERS = Contacts.hpp
+HEADERS = Contacts.hpp Phonebook.hpp
 
-OBJ = $(CFILES:.cpp=.o)
+OBJ = $(CPPFILES:.cpp=.o)
 
 NAME = phonebook
 
 all : $(NAME)
 
-%.o : %.c $(HEADERS) Makefile
-	$(CC)  $(CFLAGS) -c  $< -o $@
+%.o : %.cpp $(HEADERS) Makefile
+	$(CC)  $(CPPFLAGS) -c  $< -o $@
 
 $(NAME) : $(OBJ) 
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CPPFLAGS) -o $@ $^
 
 clean :
 	rm -rf  $(OBJ)

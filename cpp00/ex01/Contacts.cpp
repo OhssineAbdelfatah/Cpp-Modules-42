@@ -89,7 +89,7 @@ std::string Contacts::validInput(std::string value)
 {
   const std::string whiteSpace = " \n\r\t\f\v";
   std::string leftTrim;
-  int end;
+//   int end;
 
   if(value.empty())
  		return "";
