@@ -1,7 +1,5 @@
 #include"Contacts.hpp"
 
-
-
 std::string Contacts::getFirstName() const{
     return firstName;
 }
@@ -41,15 +39,8 @@ void Contacts::setPhoneNumber(std::string phoneNumber){
 }
 
 
-void Contacts::printContact()
-{
-    std::cout << "First Name " << getFirstName() << std::endl;
-    std::cout << "Last Name " << getLastName() << std::endl;
-    std::cout << "NickName " << getNickName() << std::endl;
-    std::cout << "Phone Number " << getPhoneNumber() << std::endl;
-    std::cout << "Darkest Secret " << getDarkestSecret() << std::endl;
-}
 
+/*
 void Contacts::addContact()
 {
     std::string fn;
@@ -84,7 +75,9 @@ void Contacts::addContact()
     setPhoneNumber(pn);
     setDarkestSecret(ds);
 }
+*/
 
+/*
 std::string Contacts::validInput(std::string value)
 {
   const std::string whiteSpace = " \n\r\t\f\v";
@@ -104,6 +97,7 @@ std::string Contacts::validInput(std::string value)
 	return NULL;
   return rightTrim ;
 }
+*/
 
 
 // Contacts(){

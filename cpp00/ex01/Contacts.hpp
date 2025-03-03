@@ -13,8 +13,8 @@ class Contacts {
 
     public :
         // Contacts();
-        void printContact();
-        void addContact();
+        // void printContact();
+        // void addContact();
         std::string getFirstName() const;
         void setFirstName(std::string fisrtName);
 
@@ -30,7 +30,7 @@ class Contacts {
         std::string getDarkestSecret() const;
         void setDarkestSecret(std::string darkestSecret);
 
-	    std::string validInput(std::string value);
+	    // std::string validInput(std::string value);
     
 };
 
