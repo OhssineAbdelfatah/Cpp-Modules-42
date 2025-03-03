@@ -2,9 +2,9 @@ CC = c++
 
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 
-CPPFILES = main.cpp Contacts.cpp Phonebook.cpp
+CPPFILES = main.cpp Contacts.cpp PhoneBook.cpp
 
-HEADERS = Contacts.hpp Phonebook.hpp
+HEADERS = Contacts.hpp PhoneBook.hpp
 
 OBJ = $(CPPFILES:.cpp=.o)
 
