@@ -7,7 +7,6 @@ int main()
 {
     Contacts c1;
     PhoneBook phoneOne;
-    
     std::cout << "Welcome to the 80s ,A crappy awesome phonebook >> " << std::endl;
     std::string buff;
     // phone_one.contacts_number = 0;

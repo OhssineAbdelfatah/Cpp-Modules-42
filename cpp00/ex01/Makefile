@@ -1,6 +1,6 @@
 CC = c++ 
 
-CPPFLAGS = -Wall -Werror -Wextra -std=c++98
+CPPFLAGS = -Wall -Werror -Wextra -std=c++98 -fsanitize=address -g
 
 CPPFILES = main.cpp Contacts.cpp PhoneBook.cpp
 

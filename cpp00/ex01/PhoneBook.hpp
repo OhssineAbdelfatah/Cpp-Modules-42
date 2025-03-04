@@ -9,7 +9,7 @@ class PhoneBook {
         int contactsNumber;
 
     public :
-        // PhoneBook();
+        PhoneBook();
         void addContact();
         void printContact();
 	    std::string validInput(std::string value);
