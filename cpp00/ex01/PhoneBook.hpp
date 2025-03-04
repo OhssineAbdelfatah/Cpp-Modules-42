@@ -14,7 +14,7 @@ class PhoneBook {
         void printContact();
 	    std::string validInput(std::string value);
 
-        void setInst(Contacts cont);
+        // void setInst(Contacts cont);
         Contacts getInst(int index);
         void setContactsNumber(int value);
         int getContactsNumber();

@@ -8,15 +8,36 @@ HEADERS = Contacts.hpp PhoneBook.hpp
 
 OBJ = $(CPPFILES:.cpp=.o)
 
-NAME = phonebook
+NC=\033[0m
+RED=\033[0;31m
+LGREY=\033[0;37m
 
-all : $(NAME)
+AMLOU = "${LGREY}"\
+"\n"\
+" ▄▄▄       ███▄ ▄███▓ ██▓     ▒█████   █    ██ \n"\
+"▒████▄    ▓██▒▀█▀ ██▒▓██▒    ▒██▒  ██▒ ██  ▓██▒\n"\
+"▒██  ▀█▄  ▓██    ▓██░▒██░    ▒██░  ██▒▓██  ▒██░\n"\
+"░██▄▄▄▄██ ▒██    ▒██ ▒██░    ▒██   ██░▓▓█  ░██░\n"\
+" ▓█   ▓██▒▒██▒   ░██▒░██████▒░ ████▓▒░▒▒█████▓ \n"\
+" ▒▒   ▓▒█░░ ▒░   ░  ░░ ▒░▓  ░░ ▒░▒░▒░ ░▒▓▒ ▒ ▒ \n"\
+"  ▒   ▒▒ ░░  ░      ░░ ░ ▒  ░  ░ ▒ ▒░ ░░▒░ ░ ░ \n"\
+"  ░   ▒   ░      ░     ░ ░   ░ ░ ░ ▒   ░░░ ░ ░ \n"\
+"      ░  ░       ░       ░  ░    ░ ░     ░     \n"\
+"${NC}"
+
+
+NAME =  phonebook
+
+all : ASCII_ART $(NAME)
 
 %.o : %.cpp $(HEADERS) Makefile
 	$(CC)  $(CPPFLAGS) -c  $< -o $@
 
 $(NAME) : $(OBJ) 
 	$(CC) $(CPPFLAGS) -o $@ $^
+
+ASCII_ART :
+	@echo $(AMLOU)
 
 clean :
 	rm -rf  $(OBJ)

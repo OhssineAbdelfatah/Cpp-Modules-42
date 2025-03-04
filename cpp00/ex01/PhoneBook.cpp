@@ -20,58 +20,49 @@ void PhoneBook::addContact()
 {
     Contacts c1;
     std::string fn;
-    std::cout << "First Name " << std::endl;
+    std::cout << "First Name " << std::endl << "....`";
     std::getline(std::cin, fn);
 
     std::string ln;
-    std::cout << "Last Name " << std::endl;
+    std::cout << "Last Name " << std::endl << "....`";
     std::getline(std::cin, ln);
     std::string nn;
-    std::cout << "Nick Name " << std::endl;
+    std::cout << "Nick Name " << std::endl << "....`";
     std::getline(std::cin, nn);
 
     std::string pn;
-    std::cout << "phone Number " << std::endl;
+    std::cout << "phone Number " << std::endl << "....`";
     std::getline(std::cin, pn);
 
     std::string ds;
-    std::cout << "darkest Secret " << std::endl;
+    std::cout << "darkest Secret " << std::endl << "....`";
     std::getline(std::cin, ds);
 
-    // if(std::cin.eof() || !validInput(fn) || ln.empty() || nn.empty() || pn.empty() || ds.empty())
-    //  if(std::cin.eof() || !validInput(fn) || !validInput(ln) ||  !validInput(nn) ||  !validInput(pn) || !validInput(ds))
     if (std::cin.eof() || validInput(fn).empty() || validInput(ln).empty() || validInput(nn).empty() || validInput(pn).empty() || validInput(ds).empty())
     {
         std::cout << "empty filed : contact ignored" << std::endl;
         return;
     }
+    // c1.setFirstName( fn);
     c1.setFirstName( validInput(fn));
     c1.setLastName( validInput(ln));
     c1.setNickName( validInput(nn));
     c1.setPhoneNumber( validInput(pn));
     c1.setDarkestSecret( validInput(ds));
-    // if(this->contactsNumber > 7)
-        // this->contactsNumber = 0;
     this->inst[this->contactsNumber % 8] = c1;
-    std::cout << "***********before add" <<  contactsNumber << std::endl; 
     this->contactsNumber++;
-    std::cout << "***********after add" << contactsNumber << std::endl; 
 }
 // Get a contact by index
 
-void PhoneBook::setInst(Contacts cnt)
-{
-    inst[contactsNumber ].setFirstName(cnt.getFirstName());
-    inst[contactsNumber].setLastName(cnt.getLastName());
-    inst[contactsNumber].setNickName(cnt.getNickName());
-    inst[contactsNumber].setPhoneNumber(cnt.getPhoneNumber());
-    inst[contactsNumber].setDarkestSecret(cnt.getDarkestSecret());
-    // if (contactsNumber >= 0 && 8 > contactsNumber) { // Ensure the index is valid
-    // inst[contactsNumber] = cnt;
-    // } else{
-    // }
-    contactsNumber++;
-}
+// void PhoneBook::setInst(Contacts cnt)
+// {
+//     inst[contactsNumber].setFirstName(cnt.getFirstName());
+//     inst[contactsNumber].setLastName(cnt.getLastName());
+//     inst[contactsNumber].setNickName(cnt.getNickName());
+//     inst[contactsNumber].setPhoneNumber(cnt.getPhoneNumber());
+//     inst[contactsNumber].setDarkestSecret(cnt.getDarkestSecret());
+//     contactsNumber++;
+// }
 
 Contacts PhoneBook::getInst(int index)
 {
