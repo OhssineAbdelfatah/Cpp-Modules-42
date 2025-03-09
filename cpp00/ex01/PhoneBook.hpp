@@ -11,12 +11,14 @@ class PhoneBook {
     public :
         PhoneBook();
         void addContact();
-        void printContact();
+        void printContacts();
+        void printContact(int index);
 	    std::string validInput(std::string value);
+        std::string formatColumn(std::string text);
 
         // void setInst(Contacts cont);
-        Contacts getInst(int index);
-        void setContactsNumber(int value);
+        // Contacts getInst(int index);
+        // void setContactsNumber(int value);
         int getContactsNumber();
 };
 
