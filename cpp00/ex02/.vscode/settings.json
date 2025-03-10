@@ -59,6 +59,7 @@
   "files.associations": {
     "utility": "cpp",
     "iostream": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "functional": "cpp"
   }
 }
