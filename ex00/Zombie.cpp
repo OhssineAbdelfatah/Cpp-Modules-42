@@ -1,23 +1,16 @@
 #include "Zombie.hpp"
+#include <iostream>
 
-Zombie::Zombie(std::string): _name(name)
+
+Zombie::Zombie(std::string name): _name(name)
 {
-  std::cout "Zombie" << name << "born":
+  std::cout << "Zombie " << name << " born" << std::endl;
 }
 
 Zombie::~Zombie()
 {
-  std::cout "Zombie" << name << "is dead":
+  std::cout << "Zombie " << _name << " is dead" << std::endl;
 }
-
-void Zombie::setName(std:string name){
-  this->_name = name;
-}
-
-std:string Zombie::getName() const{
-  return _name;
-}
-
 
 void Zombie::announce( void ){
   std::cout << _name << " : BraiiiiiiinnnzzzZ..." << std::endl;

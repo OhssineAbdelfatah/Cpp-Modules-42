@@ -2,9 +2,9 @@ CC = c++
 
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98 #-fsanitize=address -g
 
-CPPFILES = tests.cpp Account.cpp
+CPPFILES = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 
-HEADERS = Account.hpp
+HEADERS = Zombie.hpp
 
 OBJ = $(CPPFILES:.cpp=.o)
 
