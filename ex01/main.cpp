@@ -1,5 +1,4 @@
 #include "Zombie.hpp"
-#include <iostream>
 
 
 int main(){
@@ -7,7 +6,7 @@ int main(){
     // std::string baseName = "Zombie";
 
     // Create a horde of zombies
-    Zombie* horde = ZombieHorde(numZombies, "zombie");
+    Zombie* horde = zombieHorde(numZombies, "zombie");
 
     // Make each zombie announce itself
     for (int i = 0; i < numZombies; ++i) {
