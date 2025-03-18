@@ -33,7 +33,8 @@ AMLOU = "${RED}"\
 
 NAME =  zombie
 
-all : ASCII_ART $(NAME)
+# all : ASCII_ART $(NAME)
+all : $(NAME)
 
 %.o : %.cpp $(HEADERS) Makefile
 	$(CC)  $(CPPFLAGS) -c  $< -o $@
@@ -41,8 +42,8 @@ all : ASCII_ART $(NAME)
 $(NAME) : $(OBJ)
 	$(CC) $(CPPFLAGS) -o $@ $^
 
-ASCII_ART :
-	@echo $(AMLOU)
+# ASCII_ART :
+	# @echo $(AMLOU)
 
 clean :
 	rm -rf  $(OBJ)
