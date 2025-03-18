@@ -37,12 +37,6 @@ int	Account::getNbWithdrawals( void ){
     return _totalNbWithdrawals;
 }
 
-// void	Account::_displayTimestamp( void ){
-//     std::stringstream ss;
-//     time_t now = time(0);
-//     tm* ltm = localtime(&now);
-//     ss << "[" << (1900 + ltm->tm_year) << (1 + ltm->tm_mon) << ltm->tm_mday << "_"
-//        << ltm->tm_hour << ltm->tm_min << ltm->tm_sec << "] ";
 void Account::_displayTimestamp( void ){
 
     std::stringstream ss;
@@ -71,11 +65,8 @@ void Account::_displayTimestamp( void ){
     ss << ltm->tm_sec << "] ";
     std::cout << ss.str();
 }
-// }
 
 void Account::displayAccountsInfos() {
-    // cout look like :
-    // [19920104_091532] accounts:8;total:20049;deposits:0;withdrawals:0
     _displayTimestamp();
     std::cout << "accounts:"<< getNbAccounts();
     std::cout << ";total:" << getTotalAmount();
@@ -111,9 +102,10 @@ bool	Account::makeWithdrawal( int withdrawal ){
     _displayTimestamp();
     std::cout << "index:" << _accountIndex ;
     std::cout << ";p_amount:" << _amount ;
-    if(withdrawal > _amount)
+    if(withdrawal > checkAmount())
         std::cout << ";withdrawal:" << "refused";
-    else{
+    else
+    {
         std::cout << ";withdrawal:" << withdrawal ;
         std::cout << ";amount:" << (_amount -= withdrawal);
         _totalAmount -= withdrawal ;

@@ -1,12 +1,3 @@
-CC = c++ 
-
-CPPFLAGS = -Wall -Werror -Wextra -std=c++98 #-fsanitize=address -g
-
-CPPFILES = tests.cpp Account.cpp 
-
-HEADERS = Account.hpp
-
-OBJ = $(CPPFILES:.cpp=.o)
 
 NC=\033[0m
 RED=\033[0;31m
@@ -29,6 +20,15 @@ AMLOU = "${RED}"\
 "\n" \
 "${NC}"
 
+CC = c++ 
+
+CPPFLAGS = -Wall -Werror -Wextra -std=c++98 #-fsanitize=address -g
+
+CPPFILES = Account.cpp  tests.cpp
+
+HEADERS = Account.hpp
+
+OBJ = $(CPPFILES:.cpp=.o)
 
 NAME =  jobOfYourDream
 

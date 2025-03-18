@@ -1,6 +1,6 @@
 #include <iostream>
 #include <ctype.h>
-using namespace std;
+
 int main(int ac, char **av)
 {
     int i = 0;
@@ -18,9 +18,11 @@ int main(int ac, char **av)
                 std::cout.put(c);
                 j++;
             }
+            if (i < ac - 1)
+				std::cout << ' ';
             i++;
         }
-        std::cout << "\n";
+        std::cout << std::endl;
     }
     return 0;
 }
