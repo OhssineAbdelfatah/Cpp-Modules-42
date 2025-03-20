@@ -10,7 +10,7 @@ HumanA::~HumanA(){
     std::cout << "Deconstructer of Class HumanA" << std::endl;
 }
 
-HumanA::HumanA(std::string name , Weapon& weapon): _name(name) ,_weaponHumanA(weapon) 
+HumanA::HumanA(std::string name , Weapon &weapon): _name(name) ,_weaponHumanA(weapon) 
 {
     // _name = name ; 
     // _weaponHumanA = &weapon ;

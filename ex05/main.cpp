@@ -1,11 +1,11 @@
 #include <iostream>
+#include "Harl.hpp"
 
-int main(int ac , char* av[])
+int main()
 {
-    if(ac != 2 )
-        return (std::cout << "need 2 args " << std::endl , 0);
-    else 
-    {
-        
-    }
+    Harl h1;
+    h1.complain("DEBUG");
+    h1.complain("INFO");
+    h1.complain("WARNING");
+    h1.complain("ERROR");
 }

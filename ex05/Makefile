@@ -2,9 +2,9 @@ CC = c++
 
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98 -fsanitize=address -g
 
-CPPFILES = main.cpp 
+CPPFILES = main.cpp Harl.cpp
 
-HEADERS =
+HEADERS = Harl.hpp
 
 OBJ = $(CPPFILES:.cpp=.o)
 
@@ -31,7 +31,7 @@ AMLOU = "${LGREY}"\
 "${NC}"
 
 
-NAME =  sedForLosers
+NAME =  harl2.0
 
 all : ASCII_ART $(NAME)
 # all : $(NAME)

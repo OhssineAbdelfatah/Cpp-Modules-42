@@ -11,7 +11,7 @@ HumanB::HumanB(std::string name )
     _name = name ;
 }
 
-void HumanB::setWeapon(Weapon &weapon)
+void HumanB::setWeapon(Weapon& weapon)
 {
     _weaponHumanB = (&weapon);
 }
