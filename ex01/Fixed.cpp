@@ -1,5 +1,9 @@
 #include "Fixed.hpp"
 #include <iostream>
+#include <cmath>
+
+
+const int Fixed::fractional = 8;
 
 
 //  Default constructor
@@ -18,7 +22,7 @@ Fixed::~Fixed()
 // getRawBits member function
 int Fixed::getRawBits( void ) const
 {
-    std::cout << "getRawBits member function called" << std::endl ;
+    // std::cout << "getRawBits member function called" << std::endl ;
     return fixedPoint;
 }
 
@@ -46,37 +50,33 @@ Fixed::Fixed(const Fixed& copy)
 }
 
 // constructor takes float
-Fixed::Fixed(const float param)
+Fixed::Fixed(const float param) : fixedPoint( roundf( param * ( 1 << fractional ) ) )
 {
-    std::cout << "Constructor takes float called "  ;
-    std::cout << param << std::endl;
+    std::cout << "Constructor takes float called " << std::endl ;
 }
 
 // constructor takes integer
-Fixed::Fixed(const int param)
+Fixed::Fixed(const int param): fixedPoint(param << fractional)
 {
-    std::cout << "Constructor takes integer called "  ;
-    std::cout << param << std::endl;
+    std::cout << "Constructor takes integer called " << std::endl ;
 }
 
 // toFloat member function
 float Fixed::toFloat( void ) const
 {
-    return (3.14);
+    return (static_cast<float>(getRawBits()) / (1 << fractional));
 }
 
 // toInt member function 
 int Fixed::toInt( void ) const
 {
-    return 3;
+    return (getRawBits() >> fractional);
 }
 
 // overlaod of insertion operator (<<) for class Fixed
-std::ostream& Fixed::operator<<( std::ostream & os)
+std::ostream& operator<<( std::ostream & os, Fixed const & i)
 {
-    os << "overload" << std::endl;
-    os << "insertion" << std::endl;
-    os << "operator" << std::endl;
+    os << i.toFloat();
     return os;
 }
 

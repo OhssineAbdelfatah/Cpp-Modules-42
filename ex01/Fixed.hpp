@@ -1,7 +1,6 @@
 #ifndef FIXED_HPP
 #define FIXED_HPP
 #include<iostream>
-// Fixed::fractional = 8;
 
 class Fixed {
     private:
@@ -34,8 +33,10 @@ class Fixed {
         overload of the insertion («) operator that inserts a floating-point representation
         of the fixed-point number into the output stream object passed as a parameter.
     */
-    std::ostream& operator<<( std::ostream & os);
-
-
+   
+   
 };
+
+std::ostream & operator<<( std::ostream & os, Fixed const & i);
+
 #endif
