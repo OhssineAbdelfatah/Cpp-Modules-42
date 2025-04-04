@@ -15,5 +15,6 @@ int main( void ) {
     std::cout << "b is " << b.toInt() << " as integer" << std::endl;
     std::cout << "c is " << c.toInt() << " as integer" << std::endl;
     std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+    std::cout << "d is " << 1234.56789f << " test" << std::endl;
     return 0;
     }

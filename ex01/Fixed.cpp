@@ -7,9 +7,8 @@ const int Fixed::fractional = 8;
 
 
 //  Default constructor
-Fixed::Fixed()
+Fixed::Fixed(): fixedPoint(0)
 {
-    fixedPoint = 0 ;
     std::cout << "Default constructor called" << std::endl ;
 }
 
@@ -50,7 +49,7 @@ Fixed::Fixed(const Fixed& copy)
 }
 
 // constructor takes float
-Fixed::Fixed(const float param) : fixedPoint( roundf( param * ( 1 << fractional ) ) )
+Fixed::Fixed(const float param) : fixedPoint( roundf( param  * ( 1 << fractional )) )
 {
     std::cout << "Constructor takes float called " << std::endl ;
 }
