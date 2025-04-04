@@ -101,3 +101,36 @@ Fixed Fixed::operator/(const Fixed& operand)
 {
     return Fixed( this->toFloat() / operand.toFloat());
 }
+
+// comparison operators overload
+
+bool Fixed::operator>(const Fixed& op)
+{
+    return this->getRawBits() > op.getRawBits();
+}
+
+bool Fixed::operator>=(const Fixed& op)
+{
+    return this->getRawBits() >= op.getRawBits();
+}
+
+bool Fixed::operator<(const Fixed& op)
+{
+    return this->getRawBits() < op.getRawBits();
+}
+
+bool Fixed::operator<=(const Fixed& op)
+{
+    return this->getRawBits() <= op.getRawBits();
+}
+
+bool Fixed::operator==(const Fixed& op)
+{
+    return this->getRawBits() == op.getRawBits();
+}
+
+bool Fixed::operator!=(const Fixed& op)
+{
+    return this->getRawBits() != op.getRawBits();
+}
+

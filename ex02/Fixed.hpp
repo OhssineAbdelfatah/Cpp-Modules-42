@@ -34,6 +34,13 @@ class Fixed {
     Fixed operator*(const Fixed& operand);
     Fixed operator/(const Fixed& operand);
 
+    bool operator>(const Fixed& op);
+    bool operator>=(const Fixed& op);
+    bool operator<(const Fixed& op);
+    bool operator<=(const Fixed& op);
+    bool operator==(const Fixed& op);
+    bool operator!=(const Fixed& op);
+
    
 };
 
