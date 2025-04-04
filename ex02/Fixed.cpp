@@ -79,3 +79,25 @@ std::ostream& operator<<( std::ostream & os, Fixed const & i)
     return os;
 }
 
+
+// overlaod aritmethic operators
+
+Fixed Fixed::operator+(const Fixed& operand)
+{
+    return Fixed( this->toFloat() + operand.toFloat());
+}
+
+Fixed Fixed::operator-(const Fixed& operand)
+{
+    return Fixed( this->toFloat() - operand.toFloat());
+}
+
+Fixed Fixed::operator*(const Fixed& operand)
+{
+    return Fixed( this->toFloat() * operand.toFloat());
+}
+
+Fixed Fixed::operator/(const Fixed& operand)
+{
+    return Fixed( this->toFloat() / operand.toFloat());
+}

@@ -27,13 +27,13 @@ class Fixed {
 
     // that converts the fixed-point value to an integer value.
     int toInt( void ) const;
+    
+    // overload arithmetic operators + - / *
+    Fixed operator+(const Fixed& operand);
+    Fixed operator-(const Fixed& operand);
+    Fixed operator*(const Fixed& operand);
+    Fixed operator/(const Fixed& operand);
 
-    // overload of (<<) to insert FP of FP to OUTPUT Stream
-    /*
-        overload of the insertion («) operator that inserts a floating-point representation
-        of the fixed-point number into the output stream object passed as a parameter.
-    */
-   
    
 };
 
