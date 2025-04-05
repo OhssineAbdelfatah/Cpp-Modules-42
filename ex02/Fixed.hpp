@@ -41,6 +41,10 @@ class Fixed {
     bool operator==(const Fixed& op);
     bool operator!=(const Fixed& op);
 
+    Fixed operator++();
+    Fixed operator++(int);
+    Fixed operator--();
+    Fixed operator--(int);
    
 };
 
