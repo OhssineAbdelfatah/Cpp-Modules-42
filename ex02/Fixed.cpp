@@ -169,3 +169,35 @@ Fixed Fixed::operator--(int)
     fixedPoint--;
     return temp;
 }
+
+
+// min functions
+
+Fixed& Fixed::min(Fixed& f1, Fixed& f2)
+{
+    if(f1 > f2 )
+        return (f2);
+    return (f1);
+} 
+
+const Fixed& Fixed::min(const Fixed& f1, const Fixed& f2)
+{
+    if(f1.getRawBits() > f2.getRawBits() )
+        return (f2);
+    return (f1);
+}
+
+// max functions
+Fixed& Fixed::max(Fixed& f1, Fixed& f2)
+{
+    if(f1 < f2 )
+        return (f2);
+    return (f1);
+} 
+
+const Fixed& Fixed::max(const Fixed& f1,const Fixed& f2)
+{
+    if(f1.getRawBits() < f2.getRawBits() )
+        return (f2);
+    return (f1);
+} 
