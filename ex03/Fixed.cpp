@@ -9,13 +9,13 @@ const int Fixed::fractional = 8;
 //  Default constructor
 Fixed::Fixed(): fixedPoint(0)
 {
-    std::cout << "Default constructor called" << std::endl ;
+    // std::cout << "Default constructor called" << std::endl ;
 }
 
 // Defaullt Deconstructeur 
 Fixed::~Fixed()
 {
-    std::cout << "Defaullt Deconstructeur " << std::endl ;
+    // std::cout << "Defaullt Deconstructeur " << std::endl ;
 }
 
 // getRawBits member function
@@ -35,7 +35,7 @@ void Fixed::setRawBits( int const raw )
 // Copy assignment operator
 Fixed& Fixed::operator=(const Fixed& copy)
 {
-    std::cout << "Copy assignment operator called" << std::endl ;
+    // std::cout << "Copy assignment operator called" << std::endl ;
     this->setRawBits(copy.getRawBits());
     return *this;
 }
@@ -43,7 +43,7 @@ Fixed& Fixed::operator=(const Fixed& copy)
 // Copy constructor
 Fixed::Fixed(const Fixed& copy)
 {
-    std::cout << "Copy constructor called" << std::endl ;
+    // std::cout << "Copy constructor called" << std::endl ;
     this->setRawBits(copy.getRawBits());
     return ;
 }
@@ -51,13 +51,13 @@ Fixed::Fixed(const Fixed& copy)
 // constructor takes float
 Fixed::Fixed(const float param) : fixedPoint( roundf( param  * ( 1 << fractional )) )
 {
-    std::cout << "Constructor takes float called " << std::endl ;
+    // std::cout << "Constructor takes float called " << std::endl ;
 }
 
 // constructor takes integer
 Fixed::Fixed(const int param): fixedPoint(param << fractional)
 {
-    std::cout << "Constructor takes integer called " << std::endl ;
+    // std::cout << "Constructor takes integer called " << std::endl ;
 }
 
 // toFloat member function
@@ -79,3 +79,125 @@ std::ostream& operator<<( std::ostream & os, Fixed const & i)
     return os;
 }
 
+
+// overlaod aritmethic operators
+
+Fixed Fixed::operator+(const Fixed& operand)
+{
+    return Fixed( this->toFloat() + operand.toFloat());
+}
+
+Fixed Fixed::operator-(const Fixed& operand)
+{
+    return Fixed( this->toFloat() - operand.toFloat());
+}
+
+Fixed Fixed::operator*(const Fixed& operand)
+{
+    return Fixed( this->toFloat() * operand.toFloat());
+}
+
+Fixed Fixed::operator/(const Fixed& operand)
+{
+    return Fixed( this->toFloat() / operand.toFloat());
+}
+
+// comparison operators overload
+
+bool Fixed::operator>(const Fixed& op)
+{
+    return this->getRawBits() > op.getRawBits();
+}
+
+bool Fixed::operator>=(const Fixed& op)
+{
+    return this->getRawBits() >= op.getRawBits();
+}
+
+bool Fixed::operator<(const Fixed& op)
+{
+    return this->getRawBits() < op.getRawBits();
+}
+
+bool Fixed::operator<=(const Fixed& op)
+{
+    return this->getRawBits() <= op.getRawBits();
+}
+
+bool Fixed::operator==(const Fixed& op)
+{
+    return this->getRawBits() == op.getRawBits();
+}
+
+bool Fixed::operator!=(const Fixed& op)
+{
+    return this->getRawBits() != op.getRawBits();
+}
+
+
+// increment and decrement operators overload
+
+// pre
+Fixed Fixed::operator++()
+{
+    fixedPoint++;
+    return *this;
+}
+
+// post
+Fixed Fixed::operator++(int)
+{
+    Fixed temp(*this); 
+    // do not use float constructer , the two ojects point to same memory
+    // use copy constructer instead
+    fixedPoint++;
+    return temp;
+}
+
+// pre
+Fixed Fixed::operator--()
+{
+    fixedPoint--;
+    return *this;
+}
+
+// post
+Fixed Fixed::operator--(int)
+{
+    Fixed temp(fixedPoint);
+
+    fixedPoint--;
+    return temp;
+}
+
+
+// min functions
+
+Fixed& Fixed::min(Fixed& f1, Fixed& f2)
+{
+    if(f1 > f2 )
+        return (f2);
+    return (f1);
+} 
+
+const Fixed& Fixed::min(const Fixed& f1, const Fixed& f2)
+{
+    if(f1.getRawBits() > f2.getRawBits() )
+        return (f2);
+    return (f1);
+}
+
+// max functions
+Fixed& Fixed::max(Fixed& f1, Fixed& f2)
+{
+    if(f1 < f2 )
+        return (f2);
+    return (f1);
+} 
+
+const Fixed& Fixed::max(const Fixed& f1,const Fixed& f2)
+{
+    if(f1.getRawBits() < f2.getRawBits() )
+        return (f2);
+    return (f1);
+} 

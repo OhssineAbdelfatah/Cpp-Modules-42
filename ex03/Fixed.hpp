@@ -27,14 +27,30 @@ class Fixed {
 
     // that converts the fixed-point value to an integer value.
     int toInt( void ) const;
+    
+    // overload arithmetic operators + - / *
+    Fixed operator+(const Fixed& operand);
+    Fixed operator-(const Fixed& operand);
+    Fixed operator*(const Fixed& operand);
+    Fixed operator/(const Fixed& operand);
 
-    // overload of (<<) to insert FP of FP to OUTPUT Stream
-    /*
-        overload of the insertion («) operator that inserts a floating-point representation
-        of the fixed-point number into the output stream object passed as a parameter.
-    */
-   
-   
+    bool operator>(const Fixed& op);
+    bool operator>=(const Fixed& op);
+    bool operator<(const Fixed& op);
+    bool operator<=(const Fixed& op);
+    bool operator==(const Fixed& op);
+    bool operator!=(const Fixed& op);
+
+    Fixed operator++();
+    Fixed operator++(int);
+    Fixed operator--();
+    Fixed operator--(int);
+
+    static Fixed& min(Fixed& f1, Fixed& f2);
+    static const Fixed& min(const Fixed& f1, const Fixed& f2);
+    static Fixed& max(Fixed& f1, Fixed& f2);
+    static const Fixed& max(const Fixed& f1, const Fixed& f2);
+
 };
 
 std::ostream & operator<<( std::ostream & os, Fixed const & i);
