@@ -34,7 +34,7 @@ bool bsp( Point const a, Point const b, Point const c, Point const point){
     Fixed area3 = area( b, c , point);
     Fixed areaTriangle = area( a, b ,c);
 
-    if(area1 + area2 + area3 >= areaTriangle)
-        false ;
-    return true;
+    if(area1 + area2 + area3 == areaTriangle)
+        return true ;
+    return false;
 }

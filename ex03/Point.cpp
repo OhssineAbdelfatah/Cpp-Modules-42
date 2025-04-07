@@ -1,5 +1,4 @@
 #include"Point.hpp"
-#include"Fixed.hpp"
 
 Point::Point(): x(0),y(0)
 {
@@ -12,7 +11,7 @@ Point::~Point(){
 
 Point::Point(const float xx, const float yy): x(xx),y(yy)
 {
-    std::cout << "Constructure Paramterized Float called !!"
+    std::cout << "Constructure Paramterized Float called !!" << std::endl;
 }
 
 Point::Point(const Point& copy): x(copy.x), y(copy.y)

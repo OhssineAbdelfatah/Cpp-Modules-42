@@ -1,20 +1,14 @@
 #include <iostream>
 #include "Fixed.hpp"
+#include "Point.hpp"
 
 int main( void ) {
-    Fixed const b( 10 );
-    Fixed const c( 42.42f );
-    Fixed const d( b );
-    Fixed a;
-    a = Fixed( 1234.4321f );
-    std::cout << "a is " << a << std::endl;
-    std::cout << "b is " << b << std::endl;
-    std::cout << "c is " << c << std::endl;
-    std::cout << "d is " << d << std::endl;
-    std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-    std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-    std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-    std::cout << "d is " << d.toInt() << " as integer" << std::endl;
-    std::cout << "d is " << 1234.56789f << " test" << std::endl;
-    return 0;
+    if ( bsp( Point(0, 0), Point(10, 30), Point(20, 0), Point(30, 15) ) == true ) 
+    {
+        std::cout << "Point is in the triangle" << std::endl;
+    } else 
+    {
+        std::cout << "Point is not in the triangle" << std::endl;
     }
+    return 0;
+}
