@@ -1,0 +1,33 @@
+#ifndef CLAPTRAP_HPP
+#define CLAPTRAP_HPP
+#include<string>
+
+class ClapTrap{
+    private :
+        // Name, which is passed as a parameter to the constructor
+        std::string _Name;
+
+        // • Hit points (10), representing the health of the ClapTrap
+        int _HitPoint;
+
+        // • Energy points (10)
+        int _EnergyPoint;
+
+        // • Attack damage (0)
+        int _Attack;
+
+    public :
+        ClapTrap();
+        ~ClapTrap();
+        ClapTrap(const ClapTrap& copy );
+        ClapTrap& operator=(const ClapTrap& copy );
+        
+        ClapTrap(std::string name);
+
+
+        void attack(const std::string& target);
+        void takeDamage(unsigned int amount);
+        void beRepaired(unsigned int amount);
+
+};
+#endif
