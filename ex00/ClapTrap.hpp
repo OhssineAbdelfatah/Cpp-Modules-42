@@ -8,13 +8,13 @@ class ClapTrap{
         std::string _Name;
 
         // • Hit points (10), representing the health of the ClapTrap
-        int _HitPoint;
+        unsigned _HitPoint;
 
         // • Energy points (10)
-        int _EnergyPoint;
+        unsigned int _EnergyPoint;
 
         // • Attack damage (0)
-        int _Attack;
+        unsigned int _Attack;
 
     public :
         ClapTrap();

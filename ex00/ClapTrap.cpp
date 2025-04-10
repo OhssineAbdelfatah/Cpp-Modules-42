@@ -17,6 +17,9 @@ ClapTrap::~ClapTrap()
     std::cout << "Default Deconst ClapTrap" << std::endl;
 }
 
+// copy const
+// assig operator
+
 void ClapTrap::attack(const std::string& target)
 {
     if(_HitPoint > 0 && _EnergyPoint > 0)
@@ -26,23 +29,35 @@ void ClapTrap::attack(const std::string& target)
         std::cout << _Attack << " points of damage!";
         std::cout << std::endl;
         this->_EnergyPoint--;
+        return ;
     }
-
+    std::cout << "ClapTrap " << _Name << " is out of energy!";
+    return ;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-    std::cout << _Name ;
-    std::cout << _Attack << " points of damage!";
+    if(_HitPoint <= amount){
+        std::cout << "ClapTrap " << _Name << " is dead!";
+        std::cout << std::endl;
+    }
+    std::cout << "ClapTrap " << _Name << " take damage ";
+    std::cout << amount;
     std::cout << std::endl;
+    _HitPoint -= amount ;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-    
-    std::cout << _Name << " repaired ";
-    std::cout << _Attack << " points of damage!";
-    this->_EnergyPoint--;
-    this->_HitPoint += amount;
-    std::cout << std::endl;
+    if(_EnergyPoint > 0)
+    {
+        std::cout << _Name << " repaired ";
+        std::cout << _Attack << " points of damage!";
+        this->_EnergyPoint--;
+        this->_HitPoint += amount;
+        std::cout << std::endl;
+        return ;
+    }
+    std::cout << "ClapTrap " << _Name << " is out of energy!";
+    return ;
 }
