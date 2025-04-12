@@ -2,9 +2,9 @@ CC = c++
 
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98 -fsanitize=address -g
 
-CPPFILES = main.cpp  Fixed.cpp
+CPPFILES = main.cpp  Fixed.cpp Point.cpp bsp.cpp
 
-HEADERS = Fixed.hpp
+HEADERS = Fixed.hpp Point.hpp
 
 OBJ = $(CPPFILES:.cpp=.o)
 
@@ -16,8 +16,8 @@ LGREY=\033[0;32m
 
 NAME =  OrthodoxCanonicalForm
 
-all : ASCII_ART $(NAME)
-# all : $(NAME)
+# all : ASCII_ART $(NAME)
+all : $(NAME)
 
 %.o : %.cpp $(HEADERS) Makefile
 	$(CC)  $(CPPFLAGS) -c  $< -o $@

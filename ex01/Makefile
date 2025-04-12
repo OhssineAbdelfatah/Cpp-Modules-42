@@ -16,8 +16,8 @@ LGREY=\033[0;32m
 
 NAME =  OrthodoxCanonicalForm
 
-all : ASCII_ART $(NAME)
-# all : $(NAME)
+# all : ASCII_ART $(NAME)
+all : $(NAME)
 
 %.o : %.cpp $(HEADERS) Makefile
 	$(CC)  $(CPPFLAGS) -c  $< -o $@
