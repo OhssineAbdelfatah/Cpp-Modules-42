@@ -4,10 +4,11 @@
 
 Fixed::Fixed()
 {
-    fixedPoint = 0 ;
+    _fixedPoint = 0 ;
     std::cout << "Default constructor called" << std::endl ;
 }
 
+// destructeur
 Fixed::~Fixed()
 {
     std::cout << "Defaullt Deconstructeur " << std::endl ;
@@ -16,15 +17,13 @@ Fixed::~Fixed()
 int Fixed::getRawBits( void ) const
 {
     std::cout << "getRawBits member function called" << std::endl ;
-    return fixedPoint;
+    return _fixedPoint;
 }
-
-// 
 
 void Fixed::setRawBits( int const raw )
 {
     // std::cout << "setRawBits member function called" << std::endl ;
-    fixedPoint = raw ;
+   _fixedPoint = raw ;
 }
 
 void Fixed::operator=(const Fixed& copy)

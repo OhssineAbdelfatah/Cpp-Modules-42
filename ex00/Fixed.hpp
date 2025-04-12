@@ -3,20 +3,19 @@
 
 class Fixed {
     private:
-        int fixedPoint;
-        static const int fractional;
+        int _fixedPoint;
+        static const int _fractional;
     public :
-    Fixed();
-    ~Fixed();
-    int getRawBits( void ) const;
-    void setRawBits( int const raw );
-    
-    // def between copyConstructer and copyAssignment
-    // copy assignement
-    void operator=(const Fixed& copy); 
-    
-    // copy construecture
-    Fixed(const Fixed& copy);
-
+        Fixed();
+        ~Fixed();
+        
+        int getRawBits( void ) const;
+        void setRawBits( int const raw );
+        
+        // copy assignement
+        void operator=(const Fixed& copy); 
+        
+        // copy construecture
+        Fixed(const Fixed& copy);
 };
 #endif
