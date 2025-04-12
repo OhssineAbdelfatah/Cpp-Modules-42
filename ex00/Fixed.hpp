@@ -2,10 +2,15 @@
 #define FIXED_H
 
 
-static Fixed::fractionalNumber = 0 ;
 
 class Fixed{
-    int fixedPoint ;
-    static const int fractionalNumber;
+    private :
+        int fixedPoint ;
+        static const int fractionalNumber ;
+    public :
+        Fixed();
+        ~Fixed();
+        Fixed(const Fixed&);
+        
 };
 #endif
