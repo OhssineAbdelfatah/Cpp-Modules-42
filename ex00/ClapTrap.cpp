@@ -18,6 +18,25 @@ ClapTrap::~ClapTrap()
 }
 
 // copy const
+ClapTrap::ClapTrap(const ClapTrap& copy )
+{
+    std::cout << "Copy Const ClapTrap" << std::endl;
+    this->_Name = copy._Name;
+    this->_EnergyPoint = copy._EnergyPoint;
+    this->_HitPoint = copy._HitPoint;
+    this->_Attack = copy._Attack;
+}
+
+ClapTrap& ClapTrap::operator=(const ClapTrap& copy )
+{
+    this->_Name = copy._Name;
+    this->_EnergyPoint = copy._EnergyPoint;
+    this->_HitPoint = copy._HitPoint;
+    this->_Attack = copy._Attack;
+    
+    return *this;
+}
+
 // assig operator
 
 void ClapTrap::attack(const std::string& target)
@@ -37,7 +56,8 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-    if(_HitPoint <= amount){
+    if(_HitPoint <= amount)
+    {
         std::cout << "ClapTrap " << _Name << " is dead!";
         std::cout << std::endl;
     }
