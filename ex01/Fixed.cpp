@@ -18,6 +18,23 @@ Fixed::~Fixed()
     std::cout << "Defaullt Deconstructeur " << std::endl ;
 }
 
+// Copy constructor
+Fixed::Fixed(const Fixed& copy)
+{
+    std::cout << "Copy constructor called" << std::endl ;
+    this->setRawBits(copy.getRawBits());
+    return ;
+}
+
+// Copy assignment operator
+Fixed& Fixed::operator=(const Fixed& copy)
+{
+    std::cout << "Copy assignment operator called" << std::endl ;
+    if (this != &copy)
+        this->setRawBits(copy.getRawBits());
+    return *this;
+}
+
 // getRawBits member function
 int Fixed::getRawBits( void ) const
 {
@@ -30,23 +47,6 @@ void Fixed::setRawBits( int const raw )
 {
     // std::cout << "setRawBits member function called" << std::endl ;
     fixedPoint = raw ;
-}
-
-// Copy assignment operator
-Fixed& Fixed::operator=(const Fixed& copy)
-{
-    std::cout << "Copy assignment operator called" << std::endl ;
-    if (this != &copy)
-        this->setRawBits(copy.getRawBits());
-    return *this;
-}
-
-// Copy constructor
-Fixed::Fixed(const Fixed& copy)
-{
-    std::cout << "Copy constructor called" << std::endl ;
-    this->setRawBits(copy.getRawBits());
-    return ;
 }
 
 // constructor takes float

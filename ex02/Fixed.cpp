@@ -164,7 +164,7 @@ Fixed Fixed::operator--()
 // post
 Fixed Fixed::operator--(int)
 {
-    Fixed temp(fixedPoint);
+    Fixed temp(*this);
 
     fixedPoint--;
     return temp;

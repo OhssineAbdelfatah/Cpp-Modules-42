@@ -1,6 +1,6 @@
 CC = c++
 
-CPPFLAGS = -Wall -Werror -Wextra -std=c++98 -fsanitize=address -g
+CPPFLAGS = -Wall -Werror -Wextra -std=c++98 #-fsanitize=address -g
 
 CPPFILES = main.cpp  Fixed.cpp
 
@@ -16,8 +16,7 @@ LGREY=\033[0;32m
 
 NAME =  OrthodoxCanonicalForm
 
-# all : ASCII_ART $(NAME)
-all : $(NAME)
+all : ASCII_ART $(NAME)
 
 %.o : %.cpp $(HEADERS) Makefile
 	$(CC)  $(CPPFLAGS) -c  $< -o $@
@@ -26,18 +25,18 @@ $(NAME) : $(OBJ)
 	$(CC) $(CPPFLAGS) -o $@ $^
 
 ASCII_ART :
-	@echo -e "${LGREY}"
-	@echo -e '_____________  _______________ '
-	@echo -e '___  ____/_  |/ /_  __ \_  __ \'
-	@echo -e '__  __/  __    /_  / / /  / / /'
-	@echo -e '_  /___  _    | / /_/ // /_/ / '
-	@echo -e '/_____/  /_/|_| \____/ \____/  '
-	@echo -e ""
-	@echo -e '█▀█░█▀▄░▀█▀░█░█░█▀█░█▀▄░█▀█░█░█░░░░█▀▀░█▀█░█▀█░█▀█░█▀█░▀█▀░█▀▀░█▀█░█░░░░░█▀▀░█▀█░█▀▄░█▄█'
-	@echo -e '█░█░█▀▄░░█░░█▀█░█░█░█░█░█░█░▄▀▄░░░░█░░░█▀█░█░█░█░█░█░█░░█░░█░░░█▀█░█░░░░░█▀▀░█░█░█▀▄░█░█'
-	@echo -e '▀▀▀░▀░▀░░▀░░▀░▀░▀▀▀░▀▀░░▀▀▀░▀░▀░░░░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░░░▀░░░▀▀▀░▀░▀░▀░▀'
-	@echo -e "\t\tBy Aohssine"
-	@echo -e "${NC}"
+	@echo "${LGREY}"
+	@echo '_____________  ______________'
+	@echo '___  ____/_  |/ /_  __ \_<  /'
+	@echo '__  __/  __    /_  / / /_  / '
+	@echo '_  /___  _    | / /_/ /_  /  '
+	@echo '/_____/  /_/|_| \____/ /_/   '
+	@echo ""
+	@echo '░█▀▀░▀█▀░█░█░█▀▀░█▀▄░░░░░█▀█░█▀█░▀█▀░█▀█░▀█▀'
+	@echo '░█▀▀░░█░░▄▀▄░█▀▀░█░█░▄▄▄░█▀▀░█░█░░█░░█░█░░█░'
+	@echo '░▀░░░▀▀▀░▀░▀░▀▀▀░▀▀░░░░░░▀░░░▀▀▀░▀▀▀░▀░▀░░▀░'
+	@echo "\t\tBy Aohssine"
+	@echo "${NC}"
 
 clean :
 	rm -rf  $(OBJ)

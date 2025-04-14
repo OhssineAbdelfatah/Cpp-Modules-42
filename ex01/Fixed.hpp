@@ -12,7 +12,6 @@ class Fixed {
     int getRawBits( void ) const;
     void setRawBits( int const raw );
     
-    // def between copyConstructer and copyAssignment
     // copy assignement
     Fixed& operator=(const Fixed& copy); 
     
@@ -27,13 +26,6 @@ class Fixed {
 
     // that converts the fixed-point value to an integer value.
     int toInt( void ) const;
-
-    // overload of (<<) to insert FP of FP to OUTPUT Stream
-    /*
-        overload of the insertion («) operator that inserts a floating-point representation
-        of the fixed-point number into the output stream object passed as a parameter.
-    */
-   
    
 };
 
