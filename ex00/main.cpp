@@ -5,7 +5,6 @@ int main()
 {
     ClapTrap a("victor");
 
-    ClapTrap b;
-
-    b.attack("sanji");
+    a.attack("sanji");
+    
 }

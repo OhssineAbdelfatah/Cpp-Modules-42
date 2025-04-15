@@ -13,12 +13,11 @@ class ClapTrap{
         // • Attack damage (0)
         unsigned int _Attack;
     public :
-        ClapTrap();
+        // ClapTrap();
+        ClapTrap(std::string name);
         ~ClapTrap();
         ClapTrap(const ClapTrap& copy );
         ClapTrap& operator=(const ClapTrap& copy );
-        
-        ClapTrap(std::string name);
 
 
         void attack(const std::string& target);

@@ -1,15 +1,15 @@
 #include"ClapTrap.hpp"
 #include<iostream>
 
-ClapTrap::ClapTrap(): _HitPoint(10), _EnergyPoint(10), _Attack(0)
+ClapTrap::ClapTrap(std::string name): _Name(name), _HitPoint(10), _EnergyPoint(10), _Attack(0)
 {
     std::cout << "Default Const ClapTrap" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name): _Name(name)
-{
-    std::cout << "Param Const ClapTrap" << std::endl;
-}
+// ClapTrap::ClapTrap(): 
+// {
+//     std::cout << "Param Const ClapTrap" << std::endl;
+// }
 
 
 ClapTrap::~ClapTrap()
@@ -41,7 +41,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& copy )
 
 void ClapTrap::attack(const std::string& target)
 {
-    if(_HitPoint > 0 && _EnergyPoint > 0)
+    if(_EnergyPoint > 0)
     {
         std::cout << _Name << " attacks ";
         std::cout << target << " ,causing ";
