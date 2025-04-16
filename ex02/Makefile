@@ -2,9 +2,9 @@ CC = c++
 
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98 -fsanitize=address -g
 
-CPPFILES = main.cpp  Fixed.cpp Point.cpp bsp.cpp
+CPPFILES = main.cpp  ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 
-HEADERS = Fixed.hpp Point.hpp
+HEADERS = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 
 OBJ = $(CPPFILES:.cpp=.o)
 
@@ -14,7 +14,7 @@ LGREY=\033[0;32m
 
 
 
-NAME =  OrthodoxCanonicalForm
+NAME =  ScavTrap
 
 # all : ASCII_ART $(NAME)
 all : $(NAME)
