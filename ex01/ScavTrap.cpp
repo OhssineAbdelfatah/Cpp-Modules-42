@@ -1,11 +1,6 @@
 #include"ScavTrap.hpp"
 #include<iostream>
 
-void ScavTrap::guardGate()
-{
-    std::cout << "ScavTrap " << _Name << " is now in Gate keeper mode.";
-    std::cout << std::endl;
-}
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
@@ -22,10 +17,41 @@ ScavTrap::ScavTrap() : ClapTrap()
 
 ScavTrap::~ScavTrap()
 {
-    std::cout << "Default Destructor ScavTrap" << std::endl;
+    std::cout << "Destructor ScavTrap" << std::endl;
 }
 
-ScavTrap::Attack()
+ScavTrap::ScavTrap(const ScavTrap& copy )
 {
-    std::cout << "Default Destructor ScavTrap" << std::endl;
+    std::cout << "Copy Constructor ScavTrap" << std::endl;
+    *this = copy;
+}
+ScavTrap& ScavTrap::operator=(const ScavTrap& copy )
+{
+    this->_Attack = copy._Attack;
+    this->_EnergyPoint = copy._EnergyPoint;
+    this->_HitPoint = copy._HitPoint;
+    this->_Name = copy._Name;
+
+    return *this;
+}
+
+void ScavTrap::guardGate()
+{
+    std::cout << "ScavTrap " << _Name << " is now in Gate keeper mode.";
+    std::cout << std::endl;
+}
+
+void ScavTrap::attack(const std::string& target)
+{
+    if(_EnergyPoint > 0)
+    {
+        std::cout << "[ScavTrap] " <<  _Name << " attacks ";
+        std::cout << target << " , causing ";
+        std::cout << _Attack << " points of damage!";
+        std::cout << std::endl;
+        this->_EnergyPoint--;
+        return ;
+    }
+    std::cout << "ScavTrap " << _Name << " is out of energy!";
+    return ;
 }

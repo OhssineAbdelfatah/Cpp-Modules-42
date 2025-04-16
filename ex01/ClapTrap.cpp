@@ -14,17 +14,14 @@ ClapTrap::ClapTrap()
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "Default Destructor ClapTrap" << std::endl;
+    std::cout << "Destructor ClapTrap" << std::endl;
 }
 
 // copy const
 ClapTrap::ClapTrap(const ClapTrap& copy )
 {
     std::cout << "Copy Const ClapTrap" << std::endl;
-    this->_Name = copy._Name;
-    this->_EnergyPoint = copy._EnergyPoint;
-    this->_HitPoint = copy._HitPoint;
-    this->_Attack = copy._Attack;
+    *this = copy;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& copy )
@@ -43,7 +40,7 @@ void ClapTrap::attack(const std::string& target)
 {
     if(_EnergyPoint > 0)
     {
-        std::cout << _Name << " attacks ";
+        std::cout << "[ClapTrap] " << _Name << " attacks ";
         std::cout << target << " ,causing ";
         std::cout << _Attack << " points of damage!";
         std::cout << std::endl;
@@ -72,10 +69,11 @@ void ClapTrap::beRepaired(unsigned int amount)
     if(_EnergyPoint > 0)
     {
         std::cout << _Name << " repaired ";
-        std::cout << _Attack << " points of damage!";
+        std::cout << amount << " points of damage!";
+        std::cout << std::endl;
+        
         this->_EnergyPoint--;
         this->_HitPoint += amount;
-        std::cout << std::endl;
         return ;
     }
     std::cout << "ClapTrap " << _Name << " is out of energy!";
