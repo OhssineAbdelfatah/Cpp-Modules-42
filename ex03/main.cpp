@@ -2,12 +2,12 @@
 #include"ClapTrap.hpp"
 #include"ScavTrap.hpp"
 #include"FragTrap.hpp"
+#include"DiamondTrap.hpp"
 
 int main()
 {
     ClapTrap b("ohssine");
     b.attack("10");
-
 
     ScavTrap a("abdelfatah");
     a.beRepaired(10);
@@ -17,4 +17,6 @@ int main()
     FragTrap c("abohssine");
     c.attack("fragtttt");
     c.highFivesGuys();
+
+    DiamondTrap cv();
 }
