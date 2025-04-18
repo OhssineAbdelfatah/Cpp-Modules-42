@@ -21,10 +21,7 @@ ClapTrap::~ClapTrap()
 ClapTrap::ClapTrap(const ClapTrap& copy )
 {
     std::cout << "Copy Const ClapTrap" << std::endl;
-    this->_Name = copy._Name;
-    this->_EnergyPoint = copy._EnergyPoint;
-    this->_HitPoint = copy._HitPoint;
-    this->_AttackDamage = copy._AttackDamage;
+    *this = copy ;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& copy )

@@ -3,7 +3,7 @@
 #include<string>
 
 class ClapTrap{
-    protected :
+    private :
         // Name, which is passed as a parameter to the constructor
         std::string _Name;
         // • Hit points (10), representing the health of the ClapTrap
