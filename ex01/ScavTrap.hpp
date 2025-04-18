@@ -7,7 +7,6 @@ class ScavTrap : public ClapTrap
 {
     
     public :
-        void guardGate(); //ScavTrap is now in Gate keeper mode.
         ScavTrap(std::string name);
 
         ScavTrap(const ScavTrap& copy );
@@ -17,6 +16,7 @@ class ScavTrap : public ClapTrap
         ~ScavTrap();
 
         void attack(const std::string& target);
+        void guardGate(); //ScavTrap is now in Gate keeper mode.
         
 };
 #endif
