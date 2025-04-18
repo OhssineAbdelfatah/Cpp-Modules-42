@@ -4,10 +4,17 @@
 
 int main()
 {
-    ScavTrap a("abdelfatah");
-    ClapTrap b("ohssine");
+    ClapTrap a("ohssine");
+    ScavTrap b("abdelfatah");
+
+    a.attack("nono");
+    b.attack("nono");
+
     a.beRepaired(10);
-    a.attack("10");
-    b.attack("10");
-    a.guardGate();   
+    b.beRepaired(10);
+
+    a.takeDamage(8);
+    a.takeDamage(8);
+
+    b.guardGate();
 }
