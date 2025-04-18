@@ -5,17 +5,18 @@
 
 class ScavTrap : public ClapTrap 
 {
-    // private :
-    //     ScavTrap();
+    
     public :
-        void guardGate(); //ScavTrap is now in Gate keeper mode.
         ScavTrap(std::string name);
 
         ScavTrap(const ScavTrap& copy );
         ScavTrap& operator=(const ScavTrap& copy );
+        
+        ScavTrap();
         ~ScavTrap();
 
         void attack(const std::string& target);
-
+        void guardGate(); //ScavTrap is now in Gate keeper mode.
+        
 };
 #endif

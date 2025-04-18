@@ -3,8 +3,6 @@
 #include<string>
 
 class ClapTrap{
-    // private :
-    //     ClapTrap();
     protected :
         // Name, which is passed as a parameter to the constructor
         std::string _Name;
@@ -15,6 +13,7 @@ class ClapTrap{
         // • Attack damage (0)
         unsigned int _AttackDamage;
     public :
+        ClapTrap();
         ClapTrap(std::string name);
         ~ClapTrap();
         ClapTrap(const ClapTrap& copy );

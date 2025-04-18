@@ -4,20 +4,26 @@
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-    std::cout << "Constructor with name ScavTrap" << std::endl;
+    std::cout << "ScavTrap Constructor called with name " << name << std::endl;
+    this->_Name = name;
     this->_HitPoint = 100;
     this->_EnergyPoint = 50;
     this->_AttackDamage = 20;
 }
 
-ScavTrap::~ScavTrap()
+ScavTrap::ScavTrap() : ClapTrap()
 {
-    std::cout << "Destructor ScavTrap" << std::endl;
+    std::cout << "ScavTrap Default Constructor" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& copy ): ClapTrap(copy)
+ScavTrap::~ScavTrap()
 {
-    std::cout << "Copy Constructor ScavTrap" << std::endl;
+    std::cout << "ScavTrap Destructor" << std::endl;
+}
+
+ScavTrap::ScavTrap(const ScavTrap& copy )
+{
+    std::cout << "ScavTrap Copy Constructor" << std::endl;
     *this = copy;
 }
 ScavTrap& ScavTrap::operator=(const ScavTrap& copy )

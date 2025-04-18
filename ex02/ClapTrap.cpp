@@ -3,25 +3,25 @@
 
 ClapTrap::ClapTrap(std::string name): _Name(name), _HitPoint(10), _EnergyPoint(10), _AttackDamage(0)
 {
-    std::cout << "Constructor with name ClapTrap" << std::endl;
+    std::cout << "ClapTrap Constructor called with name " << name << std::endl;
 }
 
-// ClapTrap::ClapTrap()
-// {
-//     std::cout << "Default Constructor ClapTrap" << std::endl;
-// }
+ClapTrap::ClapTrap()
+{
+    std::cout << "ClapTrap Default Constructor" << std::endl;
+}
 
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "Destructor ClapTrap" << std::endl;
+    std::cout << "ClapTrap Default Destructor " << std::endl;
 }
 
 // copy const
 ClapTrap::ClapTrap(const ClapTrap& copy )
 {
     std::cout << "Copy Const ClapTrap" << std::endl;
-    *this = copy;
+    *this = copy ;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& copy )
@@ -40,7 +40,7 @@ void ClapTrap::attack(const std::string& target)
 {
     if(_EnergyPoint > 0)
     {
-        std::cout << "[ClapTrap] " << _Name << " attacks ";
+        std::cout << _Name << " attacks ";
         std::cout << target << " ,causing ";
         std::cout << _AttackDamage << " points of damage!";
         std::cout << std::endl;
@@ -70,10 +70,9 @@ void ClapTrap::beRepaired(unsigned int amount)
     {
         std::cout << _Name << " repaired ";
         std::cout << amount << " points of damage!";
-        std::cout << std::endl;
-        
         this->_EnergyPoint--;
         this->_HitPoint += amount;
+        std::cout << std::endl;
         return ;
     }
     std::cout << "ClapTrap " << _Name << " is out of energy!";
