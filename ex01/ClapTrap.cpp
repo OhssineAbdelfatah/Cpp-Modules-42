@@ -1,7 +1,7 @@
 #include"ClapTrap.hpp"
 #include<iostream>
 
-ClapTrap::ClapTrap(std::string name): _Name(name), _HitPoint(10), _EnergyPoint(10), _Attack(0)
+ClapTrap::ClapTrap(std::string name): _Name(name), _HitPoint(10), _EnergyPoint(10), _AttackDamage(0)
 {
     std::cout << "Constructor with name ClapTrap" << std::endl;
 }
@@ -29,7 +29,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& copy )
     this->_Name = copy._Name;
     this->_EnergyPoint = copy._EnergyPoint;
     this->_HitPoint = copy._HitPoint;
-    this->_Attack = copy._Attack;
+    this->_AttackDamage = copy._AttackDamage;
     
     return *this;
 }
@@ -42,7 +42,7 @@ void ClapTrap::attack(const std::string& target)
     {
         std::cout << "[ClapTrap] " << _Name << " attacks ";
         std::cout << target << " ,causing ";
-        std::cout << _Attack << " points of damage!";
+        std::cout << _AttackDamage << " points of damage!";
         std::cout << std::endl;
         this->_EnergyPoint--;
         return ;

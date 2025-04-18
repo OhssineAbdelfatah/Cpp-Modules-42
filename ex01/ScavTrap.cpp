@@ -7,7 +7,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
     std::cout << "Constructor with name ScavTrap" << std::endl;
     this->_HitPoint = 100;
     this->_EnergyPoint = 50;
-    this->_Attack = 20;
+    this->_AttackDamage = 20;
 }
 
 ScavTrap::ScavTrap() : ClapTrap()
@@ -27,7 +27,7 @@ ScavTrap::ScavTrap(const ScavTrap& copy )
 }
 ScavTrap& ScavTrap::operator=(const ScavTrap& copy )
 {
-    this->_Attack = copy._Attack;
+    this->_AttackDamage = copy._AttackDamage;
     this->_EnergyPoint = copy._EnergyPoint;
     this->_HitPoint = copy._HitPoint;
     this->_Name = copy._Name;
@@ -47,7 +47,7 @@ void ScavTrap::attack(const std::string& target)
     {
         std::cout << "[ScavTrap] " <<  _Name << " attacks ";
         std::cout << target << " , causing ";
-        std::cout << _Attack << " points of damage!";
+        std::cout << _AttackDamage << " points of damage!";
         std::cout << std::endl;
         this->_EnergyPoint--;
         return ;

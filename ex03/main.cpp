@@ -18,5 +18,8 @@ int main()
     c.attack("fragtttt");
     c.highFivesGuys();
 
-    DiamondTrap cv();
+    DiamondTrap cv("damonda");
+
+    cv.attack("nkii");
+    cv.whoAmI();
 }

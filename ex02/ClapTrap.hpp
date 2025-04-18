@@ -13,7 +13,7 @@ class ClapTrap{
         // • Energy points (10)
         unsigned int _EnergyPoint;
         // • Attack damage (0)
-        unsigned int _Attack;
+        unsigned int _AttackDamage;
     public :
         ClapTrap(std::string name);
         ~ClapTrap();

@@ -2,9 +2,9 @@ CC = c++
 
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98 -fsanitize=address -g
 
-CPPFILES = main.cpp  ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+CPPFILES = main.cpp  ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 
-HEADERS = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
+HEADERS = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
 
 OBJ = $(CPPFILES:.cpp=.o)
 

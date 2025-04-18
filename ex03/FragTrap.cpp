@@ -6,13 +6,13 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
     std::cout << "Constructor with name FragTrap" << std::endl;
     this->_HitPoint = 100;
     this->_EnergyPoint = 50;
-    this->_Attack = 20;
+    this->_AttackDamage = 20;
 }
 
-// FragTrap::FragTrap() : ClapTrap()
-// {
-//     std::cout << "Default Constructor FragTrap" << std::endl;
-// }
+FragTrap::FragTrap() : ClapTrap()
+{
+    std::cout << "Default Constructor FragTrap" << std::endl;
+}
 
 FragTrap::~FragTrap()
 {
@@ -26,7 +26,7 @@ FragTrap::FragTrap(const FragTrap& copy ): ClapTrap(copy)
 }
 FragTrap& FragTrap::operator=(const FragTrap& copy )
 {
-    this->_Attack = copy._Attack;
+    this->_AttackDamage = copy._AttackDamage;
     this->_EnergyPoint = copy._EnergyPoint;
     this->_HitPoint = copy._HitPoint;
     this->_Name = copy._Name;
