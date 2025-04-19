@@ -6,8 +6,9 @@
 class Cat: public Animal
 {
     protected :
-        std::string type;
+        std::string _type;
     public :
+        std::string getType() const ;    
         Cat();
         ~Cat();
 
