@@ -2,9 +2,9 @@ CC = c++
 
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98 #-fsanitize=address -g
 
-CPPFILES = main.cpp  
+CPPFILES = main.cpp Animal.cpp Cat.cpp Dog.cpp
 
-HEADERS = 
+HEADERS = Animal.hpp Cat.hpp Dog.hpp
 
 OBJ = $(CPPFILES:.cpp=.o)
 

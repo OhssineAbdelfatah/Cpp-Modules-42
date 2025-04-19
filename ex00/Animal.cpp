@@ -1,6 +1,6 @@
 #include"Animal.hpp"
 
-Animal::Animal()
+Animal::Animal(): type("animal")
 {
     std::cout << "Animal Default Constructor Called" << std::endl;
 }
@@ -22,3 +22,9 @@ Animal::Animal(const Animal& copy)
     std::cout << "Animal Copy Constructor Called" << std::endl;
     *this = copy;
 }
+
+void Animal::makeSound() const
+{
+    std::cout << "Sound Animal ..."<< std::endl;
+}
+
