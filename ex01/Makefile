@@ -2,9 +2,9 @@ CC = c++
 
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98 #-fsanitize=address -g
 
-CPPFILES = main.cpp  ClapTrap.cpp
+CPPFILES = main.cpp WrongAnimal.cpp Animal.cpp Cat.cpp Dog.cpp WrongCat.cpp
 
-HEADERS = ClapTrap.hpp
+HEADERS = Animal.hpp Cat.hpp Dog.hpp WrongCat.hpp WrongAnimal.hpp
 
 OBJ = $(CPPFILES:.cpp=.o)
 
@@ -14,9 +14,8 @@ LGREY=\033[0;32m
 
 
 
-NAME =  ClapTrap
+NAME =  Polymorphism
 
-# all : ASCII_ART $(NAME)
 all : $(NAME)
 
 %.o : %.cpp $(HEADERS) Makefile
@@ -24,20 +23,6 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	$(CC) $(CPPFLAGS) -o $@ $^
-
-ASCII_ART :
-	@echo -e "${LGREY}"
-	@echo -e '_____________  _______________ '
-	@echo -e '___  ____/_  |/ /_  __ \_  __ \'
-	@echo -e '__  __/  __    /_  / / /  / / /'
-	@echo -e '_  /___  _    | / /_/ // /_/ / '
-	@echo -e '/_____/  /_/|_| \____/ \____/  '
-	@echo -e ""
-	@echo -e '█▀█░█▀▄░▀█▀░█░█░█▀█░█▀▄░█▀█░█░█░░░░█▀▀░█▀█░█▀█░█▀█░█▀█░▀█▀░█▀▀░█▀█░█░░░░░█▀▀░█▀█░█▀▄░█▄█'
-	@echo -e '█░█░█▀▄░░█░░█▀█░█░█░█░█░█░█░▄▀▄░░░░█░░░█▀█░█░█░█░█░█░█░░█░░█░░░█▀█░█░░░░░█▀▀░█░█░█▀▄░█░█'
-	@echo -e '▀▀▀░▀░▀░░▀░░▀░▀░▀▀▀░▀▀░░▀▀▀░▀░▀░░░░▀▀▀░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░░░▀░░░▀▀▀░▀░▀░▀░▀'
-	@echo -e "\t\tBy Aohssine"
-	@echo -e "${NC}"
 
 clean :
 	rm -rf  $(OBJ)
