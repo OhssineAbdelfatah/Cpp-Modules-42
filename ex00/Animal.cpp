@@ -25,7 +25,7 @@ Animal::Animal(const Animal& copy)
 
 void Animal::makeSound() const
 {
-    std::cout << "Sound Animal ..."<< std::endl;
+    std::cout << "Animal sound..."<< std::endl;
 }
 
 std::string Animal::getType() const{

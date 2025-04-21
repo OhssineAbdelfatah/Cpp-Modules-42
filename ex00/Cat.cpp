@@ -12,7 +12,7 @@ Cat::~Cat()
 
 Cat Cat::operator=(const Cat& copy)
 {
-    std::cout << "Copy Assignement Operator Cat Called" << std::endl;
+    std::cout << "Copy Assignemenåt Operator Cat Called" << std::endl;
     this->_type = copy._type;
     return *this;
 } 
