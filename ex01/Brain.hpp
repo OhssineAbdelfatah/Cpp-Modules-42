@@ -1,26 +1,16 @@
-#include"Brain.hpp"
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
+#include<iostream>
 
-Brain::Brain()
+class Brain 
 {
-    stc::cout << "Brain Default Constructor Called" << std::endl ;
-}
+    protected:
+        std::string* ideas;
+    public:
+        Brain();
+        Brain(const Brain& );
+        Brain& operator=(const Brain& );
+        ~Brain();
+};
 
-Brain::~Brain()
-{
-    stc::cout << "Brain Default Destructor Called" << std::endl ;
-}
-
-Brain::Brain(const Brain& copy)
-{
-    stc::cout << "Brain Copy Constructor Called" << std::endl ;
-    for(int i ; i < 100 ;i++)
-    {
-        this->ideas[i] = copy.ideas[i];
-    }
-}
-
-void Brain::operator=(const Brain& copy)
-{
-    stc::cout << "Brain Copy Assignment Operator Called"  << std::endl ;
-    *this = copy;
-}
+#endif

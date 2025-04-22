@@ -2,26 +2,31 @@
 
 Dog::Dog():Animal(), _type("Dog")
 {
-    _type = "Dog";
+    this->brina = new Brain();
     std::cout << "Dog Default Constructor Called" << std::endl;
 }
 
 Dog::~Dog()
 {
+    delete ( this->brina );
     std::cout << "Dog Default Destructor Called" << std::endl;
 }
 
 Dog Dog::operator=(const Dog& copy)
 {
-    std::cout << "Copy Assignement Operator Dog Called" << std::endl;
+    delete (this->brina);
+    this->brina = new Brain();
+    this->brina = copy.brina;
     this->_type = copy._type;
+    std::cout << "Copy Assignement Operator Dog Called" << std::endl;
     return *this;
 } 
 
 Dog::Dog(const Dog& copy)
 {
-    std::cout << "Dog Copy Constructor Called" << std::endl;
+   this->brina = NULL;
     *this = copy;
+    std::cout << "Dog Copy Constructor Called" << std::endl;
 }
 
 void Dog::makeSound() const
