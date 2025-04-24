@@ -11,15 +11,13 @@ int main()
     Dog* anime;
     anime = new Dog("dog doggy dog ");
 
+    // Access the ideas array of the Dog's Brain
+
     Dog* anime1  = new Dog("catatatat");
     Brain *br = anime1->getBrain();
     std::string *ideas = br->getIdeas();
 
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
-    delete j;//should not create a leak
-    delete i;
-
+    // Use the ideas array
     for (int i = 0; i < 100; i++)
     {
         std::cout << ideas[i] << std::endl;
