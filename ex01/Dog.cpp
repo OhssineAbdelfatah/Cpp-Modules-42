@@ -6,6 +6,12 @@ Dog::Dog():Animal(), _type("Dog")
     std::cout << "Dog Default Constructor Called" << std::endl;
 }
 
+Dog::Dog(std::string idea):Animal(), _type("Dog")
+{
+    this->brina = new Brain(idea);
+    std::cout << "Dog Default Constructor Called" << std::endl;
+}
+
 Dog::~Dog()
 {
     delete ( this->brina );
@@ -37,4 +43,9 @@ void Dog::makeSound() const
 
 std::string Dog::getType() const{
     return _type;
-}
+}  
+
+
+Brain* Dog::getBrain() const {
+    return this->brina;
+} 

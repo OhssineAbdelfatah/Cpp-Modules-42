@@ -9,6 +9,14 @@ Brain::Brain()
     std::cout << "Brain Default Constructor Called" << std::endl ;
 }
 
+Brain::Brain(std::string idea)
+{   
+    this->ideas = new std::string[100];
+    for(int i = 0 ; i < 100 ; i++)
+        this->ideas[i] = idea ;
+    std::cout << "Brain with string Constructor Called" << std::endl ;
+}
+
 Brain::~Brain()
 {
     delete[] ( this->ideas);
@@ -32,5 +40,10 @@ Brain& Brain::operator=(const Brain& copy)
     }
     std::cout << "Brain Copy Assignment Operator Called" << std::endl ;
     return *this;
+}
+
+std::string* Brain::getIdeas() const
+{
+    return this->ideas;
 }
 

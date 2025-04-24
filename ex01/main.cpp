@@ -8,18 +8,23 @@
 
 int main()
 {
-    Animal *animaux[10];
+    Dog* anime;
+    anime = new Dog("dog doggy dog ");
 
-    for(int i = 0 ; i < 10 ; i++ )
+    // Access the ideas array of the Dog's Brain
+
+    Dog* anime1  = new Dog("catatatat");
+    Brain *br = anime1->getBrain();
+    std::string *ideas = br->getIdeas();
+
+    // Use the ideas array
+    for (int i = 0; i < 100; i++)
     {
-        if( i % 2 == 0 )
-            animaux[i] = new Cat();
-        else
-            animaux[i] = new Dog();
+        std::cout << ideas[i] << std::endl;
     }
 
-    for(int i = 0 ; i < 20 ; i++ )
-        delete animaux[i];
+    delete anime;
+    delete anime1;
     return 0;
 }
 

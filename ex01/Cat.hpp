@@ -13,6 +13,7 @@ class Cat: public Animal
         std::string _type;
     public :
         std::string getType() const ;    
+        Cat(std::string );
         Cat();
         ~Cat();
 

@@ -6,6 +6,12 @@ Cat::Cat():Animal(), _type("Cat")
     std::cout << "Cat Default Constructor Called" << std::endl;
 }
 
+Cat::Cat(std::string idea):Animal(), _type("Cat")
+{
+    this->brinwa = new Brain(idea);
+    std::cout << "Cat Default Constructor Called" << std::endl;
+}
+
 Cat::~Cat()
 {
     delete (this->brinwa);
