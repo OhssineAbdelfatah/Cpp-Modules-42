@@ -2,7 +2,7 @@
 
 Cure::Cure(): AMateria("Materia"), _type("cure")
 {
-    std::cout << "Cure default Constructor" << std::endl;
+    // std::cout << "Cure default Constructor" << std::endl;
 }
 
 Cure::Cure(Cure const& copy):AMateria(copy)
@@ -18,7 +18,7 @@ Cure& Cure::operator=(Cure const& copy)
 
 Cure::~Cure()
 {
-    std::cout << "Cure default Destructor" << std::endl;
+    // std::cout << "Cure default Destructor" << std::endl;
 }
 
 AMateria* Cure::clone() const 
@@ -28,6 +28,6 @@ AMateria* Cure::clone() const
 
 void Cure::use(ICharacter& target)
 {
-    std::cout << '* heals ' << target.getName() << '’s wounds *' << std::endl;
+    std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }
 

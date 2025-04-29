@@ -1,11 +1,11 @@
 #include"Ice.hpp"
 
-Ice::Ice():_type("ice")
+Ice::Ice():AMateria("AMateria"),_type("ice")
 {
-    std::cout << "Ice default Constructor" << std::endl;
+    // std::cout << "Ice default Constructor" << std::endl;
 }
 
-Ice::Ice(Ice const& copy)
+Ice::Ice(const Ice& copy):AMateria(copy)
 {
     *this = copy ;
 }
@@ -18,7 +18,7 @@ Ice& Ice::operator=(Ice const& copy)
 
 Ice::~Ice()
 {
-    std::cout << "Ice default Destructor" << std::endl;
+    // std::cout << "Ice default Destructor" << std::endl;
 }
 
 AMateria* Ice::clone() const 
@@ -26,7 +26,7 @@ AMateria* Ice::clone() const
     return new Ice(*this);
 }
 
-void use(ICharacter& target)
+void Ice::use(ICharacter& target)
 {
-    std::cout << '* heals ' << target.getName() << '’s wounds *' << std::endl;
+    std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }

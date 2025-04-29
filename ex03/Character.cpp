@@ -2,7 +2,6 @@
 
 Character::Character():_Name("characterX")
 {
-    this->currIndex = 0;
     for(int i = 0 ; i < 4 ; i++)
     {
         this->slots[i] = NULL;
@@ -11,7 +10,6 @@ Character::Character():_Name("characterX")
 
 Character::Character(std::string name):_Name(name)
 {
-    this->currIndex = 0;
     for(int i = 0 ; i < 4 ; i++)
     {
         this->slots[i] = NULL;
@@ -19,15 +17,30 @@ Character::Character(std::string name):_Name(name)
 }
 
 // need body
-Character::Character(Character & const copy )
+Character::Character(const Character &  copy )
 {
-    (void)copy;
+    for(int i = 0 ; i < 4 ; i++)
+    {
+        this->slots[i] = NULL;
+    }
+    *this = copy ;
 }
 
 // need body
-Character& Character::operator=(Character & const copy )
+Character& Character::operator=(const Character &  copy )
 {
-    (void)copy;
+    this->_Name = copy._Name;
+    for(int i = 0 ; i < 4 ; i++)
+    {
+        if( this->slots[i] )
+        {
+            delete this->slots[i];
+            this->slots[i] = NULL;
+        }
+        if(copy.slots[i])
+            this->slots[i] = copy.slots[i]->clone();
+    }
+    return *this;
 }
 
 Character::~Character()
@@ -37,7 +50,7 @@ Character::~Character()
         if(this->slots[i])
             delete this->slots[i];
     }
-    std::cout << "Character Destructed"<< std::endl;
+    // std::cout << "Character Destructed"<< std::endl;
 }
 
 std::string const & Character::getName() const 
@@ -45,9 +58,33 @@ std::string const & Character::getName() const
     return this->_Name;
 }
 
-void equip(AMateria* m)
+void Character::equip(AMateria* m)
 {
-
+    for( int i = 0 ; i < 4 ; i++ )
+    {
+        if(this->slots[i] ==  NULL )
+        {   
+            this->slots[i] = m;
+            return ;
+        }
+    }
 }
-void unequip(int idx);
-void use(int idx, Character& target);
+
+
+void Character::unequip(int idx)
+{
+    if(idx >=0 && idx <= 3)
+    {
+        this->slots[idx] = NULL; // leaks in main should be freed
+    }
+}
+
+void Character::use(int idx, ICharacter& target)
+{
+    if( idx >= 0 && idx <= 3 && this->slots[idx])
+    {
+        this->slots[idx]->use(target);
+        delete this->slots[idx];
+        this->slots[idx] = NULL ;
+    }
+}
