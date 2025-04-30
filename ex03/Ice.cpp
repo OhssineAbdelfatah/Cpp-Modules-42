@@ -1,8 +1,9 @@
 #include"Ice.hpp"
 
-Ice::Ice():AMateria("AMateria"),_type("ice")
+Ice::Ice():AMateria("ice"),_type("ice")
 {
     // std::cout << "Ice default Constructor" << std::endl;
+    std::cout << "Materia type Constructed "+ this->_type << std::endl;
 }
 
 Ice::Ice(const Ice& copy):AMateria(copy)
@@ -28,5 +29,5 @@ AMateria* Ice::clone() const
 
 void Ice::use(ICharacter& target)
 {
-    std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
+    std::cout << "* shoots an ice bolt at "+ target.getName() +" *" << std::endl;
 }

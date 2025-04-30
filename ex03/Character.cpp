@@ -10,6 +10,7 @@ Character::Character():_Name("characterX")
 
 Character::Character(std::string name):_Name(name)
 {
+    std::cout << "Character created [" + name +"]" << std::endl; 
     for(int i = 0 ; i < 4 ; i++)
     {
         this->slots[i] = NULL;
@@ -64,6 +65,7 @@ void Character::equip(AMateria* m)
     {
         if(this->slots[i] ==  NULL )
         {   
+            std::cout << "Character "+this->getName()+" equiped "+m->getType() << std::endl;
             this->slots[i] = m;
             return ;
         }

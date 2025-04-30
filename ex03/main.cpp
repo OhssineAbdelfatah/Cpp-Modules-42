@@ -1,24 +1,27 @@
-#include<iostream>
-#include"Animal.hpp"
-#include"WrongAnimal.hpp"
-#include"WrongCat.hpp"
-#include"Cat.hpp"
-#include"Dog.hpp"
 #include"Ice.hpp"
 #include"Cure.hpp"
-#include"Brain.hpp"
 #include"AMateria.hpp"
 #include"Character.hpp"
 #include"ICharacter.hpp"
 #include"IMateriaSource.hpp"
 #include"MateriaSource.hpp"
+#include<cstdlib>
+
+
+void ff(void)
+{
+    system("leaks -q Polymorphism");
+}
 
 int main1()
 {
     IMateriaSource* src = new MateriaSource();
+    
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
+
     ICharacter* me = new Character("me");
+    
     AMateria* tmp;
     tmp = src->createMateria("ice");
     me->equip(tmp);
@@ -35,6 +38,7 @@ int main1()
 
 int main()
 {
+    atexit(ff);
     main1();
 }
 

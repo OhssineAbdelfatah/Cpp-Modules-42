@@ -1,8 +1,8 @@
 #include"Cure.hpp"
 
-Cure::Cure(): AMateria("Materia"), _type("cure")
+Cure::Cure(): AMateria("cure"), _type("cure")
 {
-    // std::cout << "Cure default Constructor" << std::endl;
+    std::cout << "Materia type Constructed "+ this->_type << std::endl;
 }
 
 Cure::Cure(Cure const& copy):AMateria(copy)
