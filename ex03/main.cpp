@@ -5,13 +5,13 @@
 #include"ICharacter.hpp"
 #include"IMateriaSource.hpp"
 #include"MateriaSource.hpp"
-#include<cstdlib>
+// #include<cstdlib>
 
 
-void ff(void)
-{
-    system("leaks -q Polymorphism");
-}
+// void ff(void)
+// {
+//     system("leaks -q Polymorphism");
+// }
 
 int main1()
 {
@@ -38,7 +38,7 @@ int main1()
 
 int main()
 {
-    atexit(ff);
+    // atexit(ff);
     main1();
 }
 

@@ -7,8 +7,6 @@ class AMateria;
 
 class ICharacter
 {
-    private :
-        std::string _Name;
     public:
         virtual ~ICharacter() {}
         virtual std::string const & getName() const = 0;

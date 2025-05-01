@@ -7,9 +7,9 @@ class Animal
     protected :
         std::string _type;
     public :
-        virtual std::string getType() const = 0;    
+        virtual std::string getType() const ;    
         Animal();
-        virtual ~Animal() = 0;
+        virtual ~Animal();
 
         Animal(const Animal&);
         Animal& operator=(const Animal& );

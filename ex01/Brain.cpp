@@ -32,7 +32,7 @@ Brain::Brain(const Brain& copy)
 
 Brain& Brain::operator=(const Brain& copy)
 {
-    delete (this->ideas);
+    delete [] (this->ideas);
     this->ideas = new std::string[100]; // this is deep copy
     for(int i = 0 ; i < 100 ;i++)
     {
