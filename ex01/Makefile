@@ -2,9 +2,8 @@ CC = c++
 
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98 #-fsanitize=address -g
 
-CPPFILES = main.cpp WrongAnimal.cpp Animal.cpp Cat.cpp Dog.cpp WrongCat.cpp
-
-HEADERS = Animal.hpp Cat.hpp Dog.hpp WrongCat.hpp WrongAnimal.hpp
+CPPFILES = main.cpp Bureaucrat.cpp
+HEADERS = Bureaucrat.hpp
 
 OBJ = $(CPPFILES:.cpp=.o)
 
@@ -14,7 +13,7 @@ LGREY=\033[0;32m
 
 
 
-NAME =  Polymorphism
+NAME = BreauCrat
 
 all : $(NAME)
 
