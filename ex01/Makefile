@@ -2,8 +2,8 @@ CC = c++
 
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98 #-fsanitize=address -g
 
-CPPFILES = main.cpp Bureaucrat.cpp
-HEADERS = Bureaucrat.hpp
+CPPFILES = main.cpp Bureaucrat.cpp Form.cpp
+HEADERS = Bureaucrat.hpp Form.hpp
 
 OBJ = $(CPPFILES:.cpp=.o)
 

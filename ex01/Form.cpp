@@ -2,18 +2,21 @@
 
 Form::Form():_Name("FormDef"),_Signed(false),_SignGrade(150),_ExecuteGrade(1)
 {
-    std::cout << "Form Default Constructor" << std::endl;
+    // std::cout << "Form Default Constructor" << std::endl;
 }
+
 Form::Form(std::string name, int sGrade, int exGrade):_Name(name),_Signed(false),_SignGrade(sGrade),_ExecuteGrade(exGrade)
 {
-    std::cout << "Form Parametrized Constructor" << std::endl;
+    if(sGrade > 150 || exGrade > 150)
+        throw Form::GradeTooLowException();
+    else if (sGrade < 1 || exGrade < 1)
+        throw Form::GradeTooHighException();
+    // std::cout << "Form Parametrized Constructor" << std::endl;
 }
 
 Form& Form::operator=(const Form& copy)
 {
     this->_Signed = copy._Signed;
-    // this->_ExecuteGrade = copy._ExecuteGrade;
-    // this->_SignGrade = copy._SignGrade;
     return *this;
 }
 
@@ -24,7 +27,7 @@ Form::Form(const Form& copy):_Name(copy.getName()),_Signed(false),_SignGrade(cop
 
 Form::~Form()
 {
-    std::cout << "Form Default Destructor" << std::endl;
+    // std::cout << "Form Default Destructor" << std::endl;
 }
 
 std::string Form::getName() const 
@@ -56,19 +59,33 @@ std::ostream& operator<<(std::ostream& os, const Form& obj)
         os << "is not signed " ;
     os << ", Signe Grade is " << obj.getSigneGrade() ;
     os << ", excute Grade is " << obj.getExecuteGrade() ;
+    return os;
 }
 
-const char* Form::Exception::what() 
+const char* Form::Exception::what() const throw()
 {
     return ("Form exception : error !");
 }
 
-const char* Form::GradeTooHighException::what() 
+const char* Form::GradeTooHighException::what() const throw()
 {
     return ("Form exception : Grade too High !");
 }
 
-const char* Form::GradeTooLowException::what() 
+const char* Form::GradeTooLowException::what() const throw()
 {
     return ("Form exception : Grade too Low !");
+}
+
+bool Form::beSigned(Bureaucrat& emp)
+{
+    if(emp.getGrade() <= this->_SignGrade)
+    {
+        if(this->_Signed)
+            return false;
+        this->_Signed = true ;
+        return true;
+    }
+    else
+        throw Form::GradeTooLowException();
 }

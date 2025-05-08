@@ -1,6 +1,7 @@
 #ifndef FORM_HPP
 #define FORM_HPP
 #include<iostream>
+#include"Bureaucrat.hpp"
 
 class Form
 {
@@ -16,11 +17,14 @@ class Form
         Form& operator=(const Form&);
         ~Form();
 
-    // getters 
+        bool beSigned(Bureaucrat& );
+
+        // getters 
         std::string getName() const ;
         bool getSignedStatus() const ;
         int getSigneGrade() const ;
         int getExecuteGrade() const ;
+
     class Exception : public std::exception {
         public :
             virtual const char* what() const throw();

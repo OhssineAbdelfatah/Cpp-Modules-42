@@ -1,7 +1,8 @@
 #include"Bureaucrat.hpp"
+#include"Form.hpp"
 
 Bureaucrat::Bureaucrat():_Grade(150), _Name("DefName"){
-    std::cout << "default Constructor" << std::endl ;
+    // std::cout << "Bureaucrat Default Constructor" << std::endl ;
 }
 
 Bureaucrat::Bureaucrat(int grade , std::string name):_Name(name)
@@ -11,7 +12,7 @@ Bureaucrat::Bureaucrat(int grade , std::string name):_Name(name)
     else if (grade < 1)
         throw Bureaucrat::GradeTooHighException();
     this->_Grade = grade ;
-    std::cout << "Parametrized Constructor " << *this << std::endl ;
+    // std::cout << "Parametrized Constructor " << *this << std::endl ;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& copy)
@@ -28,7 +29,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& copy)
 
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << "default Destructor" << std::endl ;
+    // std::cout << "Bureaucrat Default Destructor" << std::endl ;
 }
 
 std::string Bureaucrat::getName() const {
@@ -56,7 +57,7 @@ void Bureaucrat::upGrade()
 void Bureaucrat::downGrade()
 {
     if(this->_Grade == 150 )
-        throw Bureaucrat::GradeTooHighException();
+        throw Bureaucrat::GradeTooLowException();
     this->_Grade++;
 }
 
@@ -73,4 +74,20 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 const char* Bureaucrat::Exception::what() const throw()
 {
     return ("Generic Exception");
+}
+
+void Bureaucrat::signForm(Form &formExample) // call beSigned()
+{
+    if (formExample.beSigned(*this))
+    {
+        std::cout << "<" << this->getName() << "> ";
+        std::cout <<  "signed " ;
+        std::cout << "<" << formExample.getName() << "> " << std::endl;
+    }
+    else
+    {
+        std::cout << "<" << this->getName() << "> ";
+        std::cout <<  "couldn't sign " ;
+        std::cout << "<" << formExample.getName() << "> because it's signed."<< std::endl;
+    }
 }

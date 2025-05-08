@@ -1,13 +1,14 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 #include<iostream>
+// #include"Form.hpp"
 
 /*
     throw exeception in Constructor with wrong grade TooLow or TooHigh
     add getters getGrade() getName()
     add setters increaseGrade() decreaseGrade() => throw execiption
 */
-
+class Form;
 class Bureaucrat
 {
     private:
@@ -19,6 +20,7 @@ class Bureaucrat
         Bureaucrat(const Bureaucrat&);
         Bureaucrat& operator=(const Bureaucrat&);
         ~Bureaucrat();
+        void signForm(Form &); // call beSigned()
 
         std::string getName() const ;
         int getGrade() const ;
