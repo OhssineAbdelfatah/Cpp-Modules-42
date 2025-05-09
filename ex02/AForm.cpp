@@ -17,6 +17,7 @@ AForm::AForm(std::string name, int sGrade, int exGrade):_Name(name),_Signed(fals
 AForm& AForm::operator=(const AForm& copy)
 {
     // this->_Signed = copy._Signed;
+    (void)copy;
     return *this;
 }
 
@@ -90,4 +91,9 @@ bool AForm::beSigned(Bureaucrat& emp)
         throw AForm::GradeTooLowException();
 }
 
-void AForm::execute(Bureaucrat const & executor) const {(void)executor;}
+const char* AForm::FormNotSigned::what() const throw()
+{
+    return ("AForm exception : Form not signed !");
+}
+
+// void AForm::execute(Bureaucrat const & executor) const {(void)executor;}

@@ -40,6 +40,11 @@ class AForm
         public :
             virtual const char* what() const throw();
     };
+
+    class FormNotSigned : public AForm::Exception{
+        public :
+            virtual const char* what() const throw();
+    };
 };
 
 std::ostream& operator<<(std::ostream& , const AForm&);

@@ -4,4 +4,4 @@
 
 
 class PresidentialPardonForm : public AForm 
-{}
+{};

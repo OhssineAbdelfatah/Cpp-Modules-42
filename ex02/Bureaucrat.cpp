@@ -1,5 +1,5 @@
 #include"Bureaucrat.hpp"
-#include"Form.hpp"
+#include"AForm.hpp"
 
 Bureaucrat::Bureaucrat():_Grade(150), _Name("DefName"){
     // std::cout << "Bureaucrat Default Constructor" << std::endl ;
@@ -76,7 +76,7 @@ const char* Bureaucrat::Exception::what() const throw()
     return ("Generic Exception");
 }
 
-void Bureaucrat::signForm(Form &formExample) // call beSigned()
+void Bureaucrat::signForm(AForm &formExample) // call beSigned()
 {
     if (formExample.beSigned(*this))
     {

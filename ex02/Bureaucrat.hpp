@@ -8,7 +8,7 @@
     add getters getGrade() getName()
     add setters increaseGrade() decreaseGrade() => throw execiption
 */
-class Form;
+class AForm;
 class Bureaucrat
 {
     private:
@@ -20,7 +20,7 @@ class Bureaucrat
         Bureaucrat(const Bureaucrat&);
         Bureaucrat& operator=(const Bureaucrat&);
         ~Bureaucrat();
-        void signForm(Form &); // call beSigned()
+        void signForm(AForm &); // call beSigned()
 
         std::string getName() const ;
         int getGrade() const ;

@@ -18,9 +18,72 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 
 void ShrubberyCreationForm::execute(const Bureaucrat & executor) const 
 {
-    (void )executor;
+    if (!this->_Signed )
+        throw ShrubberyCreationForm::FormNotSigned();
+    if( executor.getGrade() > this->_ExecuteGrade)
+        throw ShrubberyCreationForm::GradeTooLowException();
+    else{
+        std::ofstream file(this->getName().append("_shrubbery").c_str());
+        for(int i = 0 ; i < 100 ; i++)
+        {
+            file << "                            #**# #%#*#*+==#              " << std::endl;
+            file << "                            #++*#%#***++==%              " << std::endl;
+            file << "                            #*++=++**+===+               " << std::endl;
+            file << "                            %++++=+++=+==#               " << std::endl;
+            file << "                             *++==++=++++                " << std::endl;
+            file << "                             %++-=====++%                " << std::endl;
+            file << "                              *=---==++*                 " << std::endl;
+            file << "                              %=--===**                  " << std::endl;
+            file << "                              %*=++*##                   " << std::endl;
+            file << "                      %%%#**#**+===++#                   " << std::endl;
+            file << "                   ***#*++++=====-----=*###%%            " << std::endl;
+            file << "                  +-##*+=====-----:-=:::.:-=+*%          " << std::endl;
+            file << "                  =+%#+---==-:::-+-::.:::::=++*#         " << std::endl;
+            file << "                  =*%*=---+*=---:-+=:...:::=+%*-%        " << std::endl;
+            file << "                 *=%#*=---=**+=-..:=+-:..:-=#%==         " << std::endl;
+            file << "                #-% #+======+**=-:.:=*+--=+#%+-%         " << std::endl;
+            file << "                -* #=---+++===++--:-=*#+=-+%#-+          " << std::endl;
+            file << "               +=  +--:--=*++==--=+**+-::-= *-#          " << std::endl;
+            file << "              #-%  +--::-:****+-*##+-:..:+* +-           " << std::endl;
+            file << "              -#  %=-::-=* *#*-+#*=:...:++# +-           " << std::endl;
+            file << "             *+   #--:-=*  ##=+#+-::.:-+*# +-            " << std::endl;
+            file << "             -%   +--:-+   %=+#+-:..--==% +=             " << std::endl;
+            file << "            +*   %=---=#   =*#+-:.:-==--++*              " << std::endl;
+            file << "           %+    #=-:-=  #=# *-:::=+-:--+%               " << std::endl;
+            file << "           +#    *-::-*%+*   *---=+--:::*                " << std::endl;
+            file << "           +%    +-::-+*%    +-=-===:...=                " << std::endl;
+            file << "    **#***%+%%%##=-:-*       +=-===-:..:=                " << std::endl;
+            file << "   +#    %*=*###+-::=       *-:-*+--::::=                " << std::endl;
+            file << "  %+       =+*#*-::-%     #=-:.+*+==-:===                " << std::endl;
+            file << "  %+       +  %+:.=%     *+#+::*#*=-::-:-%               " << std::endl;
+            file << "   +%      =   =:-%    %+# %=::%%*=::..::%               " << std::endl;
+            file << "    +%     +  *+:+    %+%  #-:: %*+-::.::#               " << std::endl;
+            file << "           * %++-#   %+%   +=::  *=--::::#               " << std::endl;
+            file << "             *#*-%  %*#  %+##-:% %+---:::#               " << std::endl;
+            file << "            *# #=##%%   #*%  +.*  *=--:::*               " << std::endl;
+            file << "           +*  **      +#    %-- %#*=-:::=               " << std::endl;
+            file << "           %   #      +#      %-=#*#=-::::*              " << std::endl;
+            file << "                      %        +-+**-----::#             " << std::endl;
+            file << "                              +-=-#=::==-:--%            " << std::endl;
+            file << "                             =:-+=-=:-=+-:+*=*%          " << std::endl;
+            file << "                            =-#%*#=-:-*=+=*  #*+**##%    " << std::endl;
+            file << "                         %#=*  *%+=--# =%=#         %*#  " << std::endl;
+            file << "                       #++-=  *%%----**=%-%           %# " << std::endl;
+            file << "                      ++%*= %*% +:-*%+-++=               " << std::endl;
+            file << "                     =# %- %#%%+:-%   %*=                " << std::endl;
+            file << "                  %*+% #=%  %%+.=      =%                " << std::endl;
+            file << "                #**%  *+     #:+      +#                 " << std::endl;
+            file << "            %####    #=     %--      #*                  " << std::endl;
+            file << "                   %*+      -:%      %                   " << std::endl;
+            file << "                   #%      #:#                           " << std::endl;
+            file << "                           +=                            " << std::endl;
+            file << "                           -+                            " << std::endl;
+            file << "                           -+                            " << std::endl;
+            file << std::endl << std::endl<< std::endl<< std::endl<< std::endl<< std::endl;
+        } 
+        file.close();
+    }
 }
-
 
 std::string ShrubberyCreationForm::getName() const 
 {
@@ -40,4 +103,17 @@ int ShrubberyCreationForm::getSigneGrade() const
 int ShrubberyCreationForm::getExecuteGrade() const 
 {
     return this->_ExecuteGrade;
+}
+
+bool ShrubberyCreationForm::beSigned(Bureaucrat& emp)
+{
+    if(emp.getGrade() <= this->_SignGrade)
+    {
+        if(this->_Signed)
+            return false;
+        this->_Signed = true ;
+        return true;
+    }
+    else
+        throw AForm::GradeTooLowException();
 }
