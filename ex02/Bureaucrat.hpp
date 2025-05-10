@@ -26,6 +26,7 @@ class Bureaucrat
         int getGrade() const ;
         void upGrade();
         void downGrade();
+        void executeForm(AForm const & form) const ;
     class Exception : public std::exception
     {
         public :

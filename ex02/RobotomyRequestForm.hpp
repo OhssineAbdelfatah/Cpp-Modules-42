@@ -1,12 +1,22 @@
-/* 
-
-• RobotomyRequestForm: Required grades: sign 72, exec 45
-Makes some drilling noises, then informs that <target> has been robotomized
-successfully 50% of the time. Otherwise, it informs that the robotomy failed.
-
- */
 
 #ifndef ROBOTOMYREQUESTFORM_HPP
 #define ROBOTOMYREQUESTFORM_HPP
+#include <iostream>
+#include <fstream>
+#include "AForm.hpp"
 
+class RobotomyRequestForm : public AForm 
+{
+    private :
+        const std::string _Target;
+    public :
+        // orthodox
+        RobotomyRequestForm(std::string);
+        RobotomyRequestForm(const RobotomyRequestForm&);
+        RobotomyRequestForm& operator=(const RobotomyRequestForm&);
+        ~RobotomyRequestForm();
+
+        std::string getTarget() const;
+        void execute(const Bureaucrat&) const ;
+};
 #endif

@@ -1,6 +1,6 @@
 #include"AForm.hpp"
 
-AForm::AForm():_Name("AForm"),_Signed(false),_SignGrade(150),_ExecuteGrade(1)
+AForm::AForm():_Name("Form"),_Signed(false),_SignGrade(150),_ExecuteGrade(1)
 {
     // std::cout << "AForm Default Constructor" << std::endl;
 }
@@ -91,7 +91,7 @@ bool AForm::beSigned(Bureaucrat& emp)
         throw AForm::GradeTooLowException();
 }
 
-const char* AForm::FormNotSigned::what() const throw()
+const char* AForm::FormNotSignedException::what() const throw()
 {
     return ("AForm exception : Form not signed !");
 }

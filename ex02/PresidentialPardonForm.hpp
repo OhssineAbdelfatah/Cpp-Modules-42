@@ -8,5 +8,22 @@ PresidentialPardonForm:
 
 #ifndef  PRESIDENTIALPARDONFORM_HPP 
 #define  PRESIDENTIALPARDONFORM_HPP 
+#include <iostream>
+#include <fstream>
+#include "AForm.hpp"
 
+class PresidentialPardonForm : public AForm 
+{
+    private :
+        const std::string _Target;
+    public :
+        // orthodox
+        PresidentialPardonForm(std::string);
+        PresidentialPardonForm(const PresidentialPardonForm&);
+        PresidentialPardonForm& operator=(const PresidentialPardonForm&);
+        ~PresidentialPardonForm();
+
+        void execute(const Bureaucrat&) const ;
+        std::string getTarget() const;
+};
 #endif

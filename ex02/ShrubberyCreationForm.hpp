@@ -7,10 +7,7 @@
 class ShrubberyCreationForm : public AForm 
 {
     private :
-        const std::string _Name;
-        bool _Signed;
-        const int _SignGrade;
-        const int _ExecuteGrade;
+        const std::string _Target;
     public :
         // orthodox
         ShrubberyCreationForm(std::string);
@@ -19,12 +16,7 @@ class ShrubberyCreationForm : public AForm
         ~ShrubberyCreationForm();
 
         void execute(const Bureaucrat&) const ;
-        
-        std::string getName() const ;
-        bool getSignedStatus() const ;
-        int getSigneGrade() const ;
-        int getExecuteGrade() const ;
-        bool beSigned(Bureaucrat& );
+        std::string getTarget() const;
 };
 #endif
 
