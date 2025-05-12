@@ -11,7 +11,7 @@
 class Bureaucrat
 {
     private:
-    int  _Grade;
+        int  _Grade;
         const std::string _Name;
     public:
         Bureaucrat();
@@ -22,8 +22,10 @@ class Bureaucrat
 
         std::string getName() const ;
         int getGrade() const ;
+        
         void upGrade();
         void downGrade();
+        
     class Exception : public std::exception
     {
         public :

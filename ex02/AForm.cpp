@@ -16,12 +16,12 @@ AForm::AForm(std::string name, int sGrade, int exGrade):_Name(name),_Signed(fals
 
 AForm& AForm::operator=(const AForm& copy)
 {
-    // this->_Signed = copy._Signed;
-    (void)copy;
+    if (this == &copy)
+		return *this;
     return *this;
 }
 
-AForm::AForm(const AForm& copy):_Name(copy.getName()),_Signed(false),_SignGrade(copy.getSigneGrade()),_ExecuteGrade(copy.getExecuteGrade())
+AForm::AForm(const AForm& copy):_Name(copy.getName()+"_copy"),_Signed(false),_SignGrade(copy.getSigneGrade()),_ExecuteGrade(copy.getExecuteGrade())
 {
     *this = copy;
 }

@@ -19,7 +19,8 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy): AForm
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& copy)
 {
-    (void)  copy;
+    if(this == &copy)
+        return *this;
     return *this;
 }
 

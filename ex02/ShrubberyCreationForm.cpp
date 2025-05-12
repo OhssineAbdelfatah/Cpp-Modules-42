@@ -10,7 +10,8 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy):
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& copy)
 {
-    (void)  copy;
+    if(this == &copy )
+        return *this;
     return *this;
 }
 

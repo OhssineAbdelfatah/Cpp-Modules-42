@@ -1,6 +1,6 @@
 #include"Form.hpp"
 
-Form::Form():_Name("FormDef"),_Signed(false),_SignGrade(150),_ExecuteGrade(1)
+Form::Form():_Name("FormDef"),_Signed(false),_SignGrade(100),_ExecuteGrade(10)
 {
     // std::cout << "Form Default Constructor" << std::endl;
 }
@@ -16,11 +16,12 @@ Form::Form(std::string name, int sGrade, int exGrade):_Name(name),_Signed(false)
 
 Form& Form::operator=(const Form& copy)
 {
-    this->_Signed = copy._Signed;
+    if (this == &copy)
+		return *this;
     return *this;
 }
 
-Form::Form(const Form& copy):_Name(copy.getName()),_Signed(false),_SignGrade(copy.getSigneGrade()),_ExecuteGrade(copy.getExecuteGrade())
+Form::Form(const Form& copy):_Name(copy.getName() + "_copy"),_Signed(false),_SignGrade(copy.getSigneGrade()),_ExecuteGrade(copy.getExecuteGrade())
 {
     *this = copy;
 }
