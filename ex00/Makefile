@@ -2,8 +2,8 @@ CC = c++
 
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98 #-fsanitize=address -g
 
-CPPFILES = main.cpp 
-HEADERS = 
+CPPFILES = main.cpp ScalarConverter.cpp Utils.cpp
+HEADERS = ScalarConverter.hpp
 
 OBJ = $(CPPFILES:.cpp=.o)
 
@@ -13,7 +13,7 @@ LGREY=\033[0;32m
 
 
 
-NAME = 
+NAME = cpp06
 
 all : $(NAME)
 
