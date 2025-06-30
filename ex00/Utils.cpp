@@ -1,19 +1,46 @@
 #include"ScalarConverter.hpp"
 
+/*
+    Cases :
+        char : 'c'
+        -inf +inf nan nanf -inff +inff
+        float f and dot
+        double dot
+        
+*/
+static bool isInt(std::string &base){
+    if(base.size() == 0)
+        return false;
+    for (int i = 0 ; i < (int)base.size() ; i++){
+        if(!isdigit(base[0]))// 'a' => 0 , '5' => 1
+            return false;
+    }
+    return true;
+}
+
 DataType getType(std::string base)
 {
-    //check string int value size compare to string size
-    if( base.size() == 1 && isalpha(base[0]) )
+    // char check
+    if( base.size() == 3 && base[0] == '\'' && base[2] == '\'' && isalpha(base[1]) )
         return CHAR;
-    std::stringstream ss;
-    ss << atoi(base.c_str());
-    if (ss.str().size() == base.size())
+    
+    // int check
+    if (isInt(base))
         return INT;
+
     // double or float
     if ( base.find('.') != std::string::npos && base[base.size() -1 ] != '.' && base[0] != '.')
     {
-        if ( base[base.size() -1 ] == 'f' )
+        int end = (int)base.size();
+        if ( base[base.size() -1 ] == 'f' ){
+            end = base.size() -1;
+            for(int i = 0 ; i < end ; i++)
+            {   
+                if(!isdigit(base[i]) && base[i] != '.')
+                    return ERROR;
+            }
             return FLOAT;
+        }
         return DOUBLE;
     }
     if(base == "nan" || base =="-inf" || base =="+inf")
@@ -21,35 +48,4 @@ DataType getType(std::string base)
     if(base == "nanf" || base =="-inff" || base =="+inff")
             return FLOAT;
     return ERROR;
-}
-
-void printChar(std::string base)
-{
-    int c ;
-    try{
-        c = stoi(base);
-    }catch(std::exception& e)
-    {
-
-    }
-    if (c < 32 || c > 126 )
-        std::cout << "char: Non displayable" << std::endl;
-    else
-        std::cout << "char: " << static_cast<char>(c) << std::endl;
-}
-
-void printValues(std::string base)
-{
-    void *prim;
-
-    if(getType(base) == DOUBLE){}
-        prim = static_cast<double>();
-    else if(getType(base) == FLOAT)
-        prim = static_cast<>();
-    else if(getType(base) == CHAR)
-        prim = static_cast<>();
-    else if(getType(base) == INT)
-        prim = static_cast<>();
-    else if(getType(base) == ERROR)
-        prim = static_cast<>();
 }

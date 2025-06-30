@@ -21,18 +21,28 @@ void ScalarConverter::convert(std::string literal)
 {
     /* here start the conversion */
     // parse to get type 
-    if(getType(literal) == DOUBLE)
-        std::cout << "double" << std::endl;
-    else if(getType(literal) == FLOAT)
-        std::cout << "float" << std::endl;
-    else if(getType(literal) == ERROR)
-        std::cout << "not a type" << std::endl;
-    else if(getType(literal) == CHAR)
-        std::cout << "char" << std::endl;
-    else if(getType(literal) == INT)
-        std::cout << "int" << std::endl;
-    printChar(literal);
+    // printChar(literal);
     // print it in four forms (double ,int ,char ,float)
         // each one need to handeled separatley
-    printValues(literal);
+    int type = getType(literal);
+
+    switch (type)
+    {
+    case 0:// Char
+        // ConvertFromChar
+        break;
+    case 1:// int
+        // convertFromInt
+        break;
+    case 2:// float
+        // convertFromFloat
+        break;
+    case 3:// double
+        // convertFromDouble
+        break;
+    case 4:// error
+        break;
+    default:
+        break;
+    }
 }
