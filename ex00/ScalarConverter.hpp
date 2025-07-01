@@ -6,6 +6,7 @@
 #include<sstream>
 #include<cstdlib>
 #include<exception>
+#include <iomanip>
 
 typedef enum DataType {
     CHAR,
@@ -26,8 +27,6 @@ class ScalarConverter {
 };
 
 DataType getType(std::string);
-void printChar(std::string&);
-void printValues(std::string);
 void ConvertFromChar(std::string& base);
 
 #endif // SCALARCONVERTER_HPP

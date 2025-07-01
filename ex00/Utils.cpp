@@ -8,12 +8,13 @@
         double dot
         
 */
-static bool isInt(std::string &base){
+
+bool isInt(std::string &base){
     if(base.size() == 0)
         return false;
     for (int i = 0 ; i < (int)base.size() ; i++){
-        if(!isdigit(base[0]))// 'a' => 0 , '5' => 1
-            return false;
+        if(!isdigit(base[i]))// 'a' => 0 , '5' => 1
+            return false;   
     }
     return true;
 }
@@ -50,27 +51,51 @@ DataType getType(std::string base)
     return ERROR;
 }
 
-void printChar(std::string& base)
+void    printDouble(std::string& base, DataType type)
 {
-    int i = atoi(base.c_str());
+    if(type == CHAR){
+        std::cout << std::fixed << std::setprecision(1); // Set precision
+        std::cout << "double: " << static_cast<double>(base[1]) << std::endl;
+    }else if(type == INT){
+        std::cout << std::fixed << std::setprecision(1); // Set precision
+        std::cout << "double: " << static_cast<double>(atoi(base.c_str())) << std::endl;
+    }else if(type == DOUBLE){
+        std::cout << std::fixed << std::setprecision(base.size() - base.find('.')); // Set precision
+        std::cout << "double: " << static_cast<double>(stod(base)) << std::endl;
+    }else{
+        std::cout << std::fixed << std::setprecision(base.size() - base.find('.')); // Set precision
+        std::cout << "double: " << static_cast<double>(stof(base)) << std::endl;
+    }
+}
 
-    if( i >= 32 && i <= 126 )
-        std::cout << "alo alo char: " << base[1] << std::endl;
+void printFloat(std::string& base)
+{
+        std::cout << "char: " << base[1] << std::endl;
+
+}
+
+void printChar(int c)
+{
+    if( c >= 32 && c <= 126 )
+        std::cout << "char: " << static_cast<char>(c) << std::endl;
     else
         std::cout << "char: " << "Non displayable" << std::endl;
 
 }
 
-void printInt(std::string& base)
+void printInt(int i)
 {
-    int i = atoi(base.c_str());
 
     std::cout << "int: " << i << std::endl;
 }
 
 void ConvertFromChar(std::string& base)
 {   
-    printChar(base);
-    printInt(base);
-    printDouble();
+    int i = (int)base[1];
+    
+    printChar(i);
+    printInt(i);
+    // printFloat(base);
+    printDouble(base, CHAR);
 }
+
