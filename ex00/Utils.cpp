@@ -21,7 +21,7 @@ static bool isInt(std::string &base){
 DataType getType(std::string base)
 {
     // char check
-    if( base.size() == 3 && base[0] == '\'' && base[2] == '\'' && isalpha(base[1]) )
+    if( base.size() == 3 && base[0] == '\'' && base[2] == '\'' )
         return CHAR;
     
     // int check
@@ -48,4 +48,29 @@ DataType getType(std::string base)
     if(base == "nanf" || base =="-inff" || base =="+inff")
             return FLOAT;
     return ERROR;
+}
+
+void printChar(std::string& base)
+{
+    int i = atoi(base.c_str());
+
+    if( i >= 32 && i <= 126 )
+        std::cout << "alo alo char: " << base[1] << std::endl;
+    else
+        std::cout << "char: " << "Non displayable" << std::endl;
+
+}
+
+void printInt(std::string& base)
+{
+    int i = atoi(base.c_str());
+
+    std::cout << "int: " << i << std::endl;
+}
+
+void ConvertFromChar(std::string& base)
+{   
+    printChar(base);
+    printInt(base);
+    printDouble();
 }
