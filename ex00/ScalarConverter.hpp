@@ -27,6 +27,10 @@ class ScalarConverter {
 };
 
 DataType getType(std::string);
-void ConvertFromChar(std::string& base);
+void ConvertFromChar(std::string&);
+void ConvertFromInt(std::string&);
+void ConvertFromFloat(std::string&);
+void ConvertFromDouble(std::string&);
+
 
 #endif // SCALARCONVERTER_HPP

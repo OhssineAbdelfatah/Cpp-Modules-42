@@ -68,9 +68,21 @@ void    printDouble(std::string& base, DataType type)
     }
 }
 
-void printFloat(std::string& base)
+void printFloat(std::string& base,int type)
 {
-        std::cout << "char: " << base[1] << std::endl;
+    if(type == CHAR){
+        std::cout << std::fixed << std::setprecision(1); // Set precision
+        std::cout << "float: " << static_cast<float>(base[1]) << "f" << std::endl;
+    }else if(type == INT){
+        std::cout << std::fixed << std::setprecision(1); // Set precision
+        std::cout << "float: " << static_cast<float>(atoi(base.c_str())) << "f" << std::endl;
+    }else if(type == DOUBLE){
+        std::cout << std::fixed << std::setprecision(base.size() - base.find('.')); // Set precision
+        std::cout << "float: " << static_cast<float>(stod(base)) << std::endl;
+    }else{
+        std::cout << std::fixed << std::setprecision(base.size() - base.find('.')); // Set precision
+        std::cout << "float: " << static_cast<float>(stof(base)) << std::endl;
+    }
 
 }
 
@@ -95,7 +107,64 @@ void ConvertFromChar(std::string& base)
     
     printChar(i);
     printInt(i);
-    // printFloat(base);
+    printFloat(base, CHAR);
     printDouble(base, CHAR);
 }
 
+void ConvertFromInt(std::string& base)
+{
+    try{
+        int i = stoi(base);
+    }catch(const std::out_of_range& e){
+        printInt(i);
+    }
+
+    printChar(i);
+    printFloat(base, INT);
+    printDouble(base, INT);
+}
+
+void ConvertFromFloat(std::string& base)
+{
+    int i = stof(base);
+
+    printChar(i);
+    printInt(i);
+    printFloat(base, INT);
+    printDouble(base, INT);
+}
+
+void ConvertFromDouble(std::string& base)
+{
+    try {
+        double value = std::stod(base); // Convert string to double
+
+        // Check if the value is within the range of double
+        if (value > std::numeric_limits<double>::max()) {
+            std::cout << "double: Value exceeds maximum double limit." << std::endl;
+        } else if (value < -std::numeric_limits<double>::max()) {
+            std::cout << "double: Value exceeds minimum double limit." << std::endl;
+        } else {
+            std::cout << "double: " << value << std::endl;
+        }
+    } catch (const std::invalid_argument& e) {
+        std::cerr << "double: Invalid argument. Unable to convert '" << base << "' to double." << std::endl;
+    } catch (const std::out_of_range& e) {
+        std::cerr << "double: Out of range. The value in '" << base << "' is too large or small for a double." << std::endl;
+    }
+    int i = stod(base);
+
+    printChar(i);
+    printInt(i);
+    printFloat(base, INT);
+    printDouble(base, INT);
+}
+
+// to do
+/*
+    need to fix double input  >> 4654.0adklsfh shou not fix
+    limits :
+        > int 
+        > double
+        > float
+*/
