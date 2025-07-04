@@ -12,7 +12,10 @@
 bool isInt(std::string &base){
     if(base.size() == 0)
         return false;
-    for (int i = 0 ; i < (int)base.size() ; i++){
+    int i = 0;
+    if(base[0] == '-' || base[0] == '+')
+        i++;
+    for ( ; i < (int)base.size() ; i++){
         if(!isdigit(base[i]))// 'a' => 0 , '5' => 1
             return false;   
     }
@@ -21,6 +24,10 @@ bool isInt(std::string &base){
 
 DataType getType(std::string base)
 {
+    if(base == "nan" || base =="-inf" || base =="+inf")
+        return DOUBLE_SP;
+    if(base == "nanf" || base =="-inff" || base =="+inff")
+            return FLOAT_SP;
     // char check
     if( base.size() == 3 && base[0] == '\'' && base[2] == '\'' )
         return CHAR;
@@ -30,12 +37,15 @@ DataType getType(std::string base)
         return INT;
 
     // double or float
-    if ( base.find('.') != std::string::npos && base[base.size() -1 ] != '.' && base[0] != '.')
+    if ( base.find('.') != std::string::npos && base[base.size() -1 ] != '.' && base[0] != '.' && (isdigit(base[base.size() -1 ]) || base[base.size() -1 ] == 'f'))
     {
+        int i = 0;
+        if(base[0] == '-' || base[0] == '+')
+            i++;
         int end = (int)base.size();
         if ( base[base.size() -1 ] == 'f' ){
             end = base.size() -1;
-            for(int i = 0 ; i < end ; i++)
+            for( ; i < end ; i++)
             {   
                 if(!isdigit(base[i]) && base[i] != '.')
                     return ERROR;
@@ -44,27 +54,23 @@ DataType getType(std::string base)
         }
         return DOUBLE;
     }
-    if(base == "nan" || base =="-inf" || base =="+inf")
-        return DOUBLE;
-    if(base == "nanf" || base =="-inff" || base =="+inff")
-            return FLOAT;
     return ERROR;
 }
 
-void    printDouble(std::string& base, DataType type)
+void    printDouble(double d, DataType type)
 {
     if(type == CHAR){
-        std::cout << std::fixed << std::setprecision(1); // Set precision
-        std::cout << "double: " << static_cast<double>(base[1]) << std::endl;
+        std::cout << std::fixed << std::setprecision(2); // Set precision
+        std::cout << "double: " << static_cast<double>(d) << std::endl;
     }else if(type == INT){
-        std::cout << std::fixed << std::setprecision(1); // Set precision
-        std::cout << "double: " << static_cast<double>(atoi(base.c_str())) << std::endl;
+        std::cout << std::fixed << std::setprecision(2); // Set precision
+        std::cout << "double: " << static_cast<double>(d) << std::endl;
     }else if(type == DOUBLE){
-        std::cout << std::fixed << std::setprecision(base.size() - base.find('.')); // Set precision
-        std::cout << "double: " << static_cast<double>(stod(base)) << std::endl;
+        std::cout << std::fixed << std::setprecision(2); // Set precision
+        std::cout << "double: " << static_cast<double>(d) << std::endl;
     }else{
-        std::cout << std::fixed << std::setprecision(base.size() - base.find('.')); // Set precision
-        std::cout << "double: " << static_cast<double>(stof(base)) << std::endl;
+        std::cout << std::fixed << std::setprecision(2); // Set precision
+        std::cout << "double: " << static_cast<double>(d) << std::endl;
     }
 }
 
@@ -77,11 +83,11 @@ void printFloat(std::string& base,int type)
         std::cout << std::fixed << std::setprecision(1); // Set precision
         std::cout << "float: " << static_cast<float>(atoi(base.c_str())) << "f" << std::endl;
     }else if(type == DOUBLE){
-        std::cout << std::fixed << std::setprecision(base.size() - base.find('.')); // Set precision
-        std::cout << "float: " << static_cast<float>(stod(base)) << std::endl;
+        std::cout << std::fixed << std::setprecision(2); // Set precision
+        std::cout << "float: " << static_cast<float>(stod(base)) << "f" << std::endl;
     }else{
-        std::cout << std::fixed << std::setprecision(base.size() - base.find('.')); // Set precision
-        std::cout << "float: " << static_cast<float>(stof(base)) << std::endl;
+        std::cout << std::fixed << std::setprecision(2); // Set precision
+        std::cout << "float: " << static_cast<float>(stof(base)) << "f" << std::endl;
     }
 
 }
@@ -108,63 +114,77 @@ void ConvertFromChar(std::string& base)
     printChar(i);
     printInt(i);
     printFloat(base, CHAR);
-    printDouble(base, CHAR);
+    printDouble(i, CHAR);
 }
 
 void ConvertFromInt(std::string& base)
 {
+    int i;
     try{
-        int i = stoi(base);
-    }catch(const std::out_of_range& e){
+        i = stoi(base);
+        printChar(i);
         printInt(i);
+        printFloat(base, INT);
+        printDouble(i, INT);
+    }
+    catch(const std::out_of_range& e){
+        std::cerr << "int out of range" << std::endl;
     }
 
-    printChar(i);
-    printFloat(base, INT);
-    printDouble(base, INT);
 }
 
 void ConvertFromFloat(std::string& base)
 {
-    int i = stof(base);
+    float i;
+    try{
+        i = stof(base);
+        if(i > std::numeric_limits<int>::max() || i < std::numeric_limits<int>::min() ){
+            std::cout << "char: Non displayable" << std::endl;
+            std::cout << "int: impossible" << std::endl;
+        }else{
+            printChar(i);
+            printInt(i);
+        }
+        printFloat(base, FLOAT);
+        printDouble(i, FLOAT);
 
-    printChar(i);
-    printInt(i);
-    printFloat(base, INT);
-    printDouble(base, INT);
+    }catch (const std::out_of_range& e) {
+        std::cerr << "cannot convert : double out of range" << std::endl;
+    }
+
 }
 
 void ConvertFromDouble(std::string& base)
 {
+    double i;
     try {
-        double value = std::stod(base); // Convert string to double
-
-        // Check if the value is within the range of double
-        if (value > std::numeric_limits<double>::max()) {
-            std::cout << "double: Value exceeds maximum double limit." << std::endl;
-        } else if (value < -std::numeric_limits<double>::max()) {
-            std::cout << "double: Value exceeds minimum double limit." << std::endl;
-        } else {
-            std::cout << "double: " << value << std::endl;
+        i = std::stod(base);
+        if(i > std::numeric_limits<int>::max() || i < std::numeric_limits<int>::min() ){
+            std::cout << "char: Non displayable" << std::endl;
+            std::cout << "int: impossible" << std::endl;
+        }else{
+            printChar(i);
+            printInt(i);
         }
-    } catch (const std::invalid_argument& e) {
-        std::cerr << "double: Invalid argument. Unable to convert '" << base << "' to double." << std::endl;
-    } catch (const std::out_of_range& e) {
-        std::cerr << "double: Out of range. The value in '" << base << "' is too large or small for a double." << std::endl;
-    }
-    int i = stod(base);
+            
+        if(i > std::numeric_limits<float>::max() || i < std::numeric_limits<float>::min() )
+            std::cout << "float: impossible" << std::endl;
+        else
+            printFloat(base, DOUBLE);
+        printDouble(i, DOUBLE);
 
-    printChar(i);
-    printInt(i);
-    printFloat(base, INT);
-    printDouble(base, INT);
+    }catch (const std::out_of_range& e) {
+        std::cerr << "cannot convert : double out of range" << std::endl;
+    }
+
 }
 
-// to do
+
 /*
-    need to fix double input  >> 4654.0adklsfh shou not fix
-    limits :
-        > int 
-        > double
-        > float
+
+input : nan 
+
+output : 
+
+
 */

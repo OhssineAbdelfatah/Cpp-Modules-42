@@ -13,7 +13,9 @@ typedef enum DataType {
     INT,
     FLOAT,
     DOUBLE,
-    ERROR 
+    ERROR ,
+    FLOAT_SP,
+    DOUBLE_SP,
 } DataType;
 
 class ScalarConverter {
