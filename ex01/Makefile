@@ -1,19 +1,13 @@
 CC = c++
 
-CPPFLAGS = -Wall -Werror -Wextra -std=c++98 #-fsanitize=address -g
+CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 
-CPPFILES = main.cpp 
-HEADERS = 
+CPPFILES = main.cpp Serializer.cpp
+HEADERS = Serializer.hpp
 
 OBJ = $(CPPFILES:.cpp=.o)
 
-NC=\033[0m
-RED=\033[0;31m
-LGREY=\033[0;32m
-
-
-
-NAME = 
+NAME = Serialization
 
 all : $(NAME)
 
