@@ -7,7 +7,7 @@ HEADERS = whatever.hpp
 
 OBJ = $(CPPFILES:.cpp=.o)
 
-NAME = cpp06
+NAME = cpp07
 
 all : $(NAME)
 
