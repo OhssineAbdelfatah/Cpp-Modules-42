@@ -1,18 +1,28 @@
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
+#include<iostream> 
 
 template <typename A>
 class Array {
-public:
-    Array();
-    Array(unsigned int);
-    ~Array();
+    private:
+        A* _data;
+        unsigned int _size;
+    public:
+        Array();
+        Array(unsigned int);
+        ~Array();
 
-    Array(const Array& other);
-    Array& operator=(const Array& other);
+        Array(const Array& );
+        Array& operator=(const Array& );
+        A &operator[](unsigned int index);
 
-private:
-    A arr[];
+    class OutOfBoundryException : public std::exception 
+    {
+        public :
+            virtual const char* what() const throw();
+
+    };
+
 };
 
 #endif // ARRAY_HPP
