@@ -1,6 +1,6 @@
 #ifndef SPAN_HPP
 #define SPAN_HPP
-#include<set>
+#include<vector>
 class Span {
 public:
     Span(unsigned int);
@@ -17,10 +17,14 @@ public:
         public :
             virtual const char* wath() const throw();
     };
+    class SpanSingleElemException : public std::exception {
+        public :
+            virtual const char* wath() const throw();
+    };
 private:
     // Add member variables here
     unsigned int N;
-    std::set<int> mySpan;
+    std::vector<int> mySpan;
 
 };
 

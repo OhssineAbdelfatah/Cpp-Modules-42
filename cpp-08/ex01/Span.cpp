@@ -1,5 +1,6 @@
 #include "Span.hpp"
 #include <iostream>
+#include <algorithm>
 #include <set>
 
 Span::Span(unsigned int N) {
@@ -32,10 +33,10 @@ Span& Span::operator=(const Span& other) {
 void Span::addNumber(int num){
     if(this->mySpan.size() + 1 > this->N)
         throw Span::SpanOverflowException();
-    this->mySpan.insert(num);
+    this->mySpan.push_back(num);
     // if(this->mySpan.size() + 1 > this->N){
-    for(std::set<int>::iterator it = mySpan.begin(); it != mySpan.end() ; it++)
-        std::cout << *it << std::endl;
+    // for(std::vector<int>::iterator it = mySpan.begin(); it != mySpan.end() ; it++)
+    //     std::cout << *it << std::endl;
     // }
 }
 
@@ -43,18 +44,27 @@ const char* Span::SpanOverflowException::wath() const throw(){
     return ("you can not add numbers anymore !!");
 }
 
-int Span::shortestSpan(){
-    // create and throw exception if there is only 1 number
-    std::set<int> diffs;
-    std::set<int>::iterator it1 = this->mySpan.begin(); 
-    std::set<int>::iterator it2 = this->mySpan.begin(); 
-    for (it2++ ; it2 != this->mySpan.end(); it2++,it1++ )
-        diffs.insert(*it2 - *it1);
+const char* Span::SpanSingleElemException::wath() const throw(){
+    return ("The span can not be calculated , there is only one element !!");
+}
 
-    return *(diffs.begin());
+int Span::shortestSpan(){
+    if(mySpan.size() < 2)
+        throw Span::SpanSingleElemException();     
+    std::vector<int>::iterator it1 = this->mySpan.begin();
+    std::vector<int>::iterator it2 = this->mySpan.begin(); 
+    std::sort(this->mySpan.begin(), this->mySpan.end());
+    int minDiff = *(--mySpan.end());
+    for (it2++ ; it2 != this->mySpan.end(); it2++,it1++ ){
+        if(minDiff > (*it2 - *it1))
+        minDiff = (*it2 - *it1);
+    }
+    return minDiff;
 }
 
 int Span::longestSpan(){
+    if(mySpan.size() < 2)
+        throw Span::SpanSingleElemException();  
+    std::sort(this->mySpan.begin(), this->mySpan.end());
     return (*(this->mySpan.end()) - *(this->mySpan.begin()));
-    // hona takmeno ala3ba
 }
