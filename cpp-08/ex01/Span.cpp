@@ -1,9 +1,9 @@
 #include "Span.hpp"
 #include <iostream>
 #include <algorithm>
-#include <set>
+#include <vector>
 
-Span::Span(unsigned int N) {
+Span::Span(unsigned int N) :N(N){
     // Constructor implementation
     std::cout << "new Span("<< N <<") created !" << std::endl;
 }
@@ -34,17 +34,13 @@ void Span::addNumber(int num){
     if(this->mySpan.size() + 1 > this->N)
         throw Span::SpanOverflowException();
     this->mySpan.push_back(num);
-    // if(this->mySpan.size() + 1 > this->N){
-    // for(std::vector<int>::iterator it = mySpan.begin(); it != mySpan.end() ; it++)
-    //     std::cout << *it << std::endl;
-    // }
 }
 
-const char* Span::SpanOverflowException::wath() const throw(){
+const char* Span::SpanOverflowException::what() const throw(){
     return ("you can not add numbers anymore !!");
 }
 
-const char* Span::SpanSingleElemException::wath() const throw(){
+const char* Span::SpanSingleElemException::what() const throw(){
     return ("The span can not be calculated , there is only one element !!");
 }
 
@@ -66,5 +62,6 @@ int Span::longestSpan(){
     if(mySpan.size() < 2)
         throw Span::SpanSingleElemException();  
     std::sort(this->mySpan.begin(), this->mySpan.end());
-    return (*(this->mySpan.end()) - *(this->mySpan.begin()));
+    return (*(--this->mySpan.end()) - *(this->mySpan.begin()));
 }
+
