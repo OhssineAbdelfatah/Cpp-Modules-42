@@ -4,7 +4,7 @@ BitcoinExchange::BitcoinExchange(){}
 
 BitcoinExchange::BitcoinExchange(char *path) {
     try{
-        std::ifstream dataSet(path, std::ios::in);
+        file.open(path, std::ios::in);
     }catch (std::exception& e){
         std::cout << e.what() << std::endl;
     }
@@ -27,35 +27,46 @@ BitcoinExchange::~BitcoinExchange(){}
 
 std::pair<std::string , float> BitcoinExchange::parseLine(std::string& line){
     std::string token[2];
+    std::string date[3];
+
     token[0] = line.substr(0 , line.find('|'));
-    token[1] = line.substr(line.find('|'), line.size());
+    if(line.find('|') == std::string::npos)
+        throw BitcoinExchange::BadInputException();
+    token[1] = line.substr(line.find('|') + 1 , line.size());
+    // std::reverse(token[1].begin(), token[1].end());
+    // token[1] = token[1].substr(0 , token[1].size()-1);
+    // std::reverse(token[1].begin(), token[1].end());
+
     if(token[0].size() == 0 || token[1].size() == 0 || token[0].size() == std::string::npos || token[1].size() == std::string::npos )
         throw BitcoinExchange::BadInputException();
-    std::string date[3];
-    // date[0] = token[0].substr(0, token[0].find('-')); 
-    // date[1] = token[0].substr(token[0].find('-'), token[0].find('-')); 
-    // std::string::iterator it = token[0].begin();
     int pos = 0;
     for (size_t i = 0; i < 3; i++)
     {
-        date[i] = token[0].substr( pos, token[0].find('-', pos )); 
-        pos = token[0].find('-', pos );
-        std::cout << ">>>>>>>>>> " << date[i] << std::endl;
+        date[i] = token[0].substr( pos, token[0].find('-', pos ) - pos ); 
+        pos  = token[0].find('-', pos ) +1;
     }
-    
+    std::cout << "**" << date[0] << "**" << date[1] << "**" << date[2] << "** ["<< token[1] << "]"<< std::endl;
+    std::pair<std::string, float> ccc ();
+    return  ;
 }
 
 
 void BitcoinExchange::readFile(){
     
     std::string line;
-    
+    std::getline(file, line);
+    std::cout << "0 " << line << std::endl;
+    // std::getline(file, line);
+    // std::cout << "1 " << line << std::endl;
+    // parseLine(line);
+
+
     while( std::getline(file, line)){
         parseLine(line);
     }
 }
 
 const char* BitcoinExchange::BadInputException::what() const throw(){
-    return ("bad input !!");
+    return (" bad input !!");
 }
 

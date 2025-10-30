@@ -12,6 +12,11 @@ int main(int ac , char *av[]){
     if(ac != 2 )
         std::cerr << RED << " no file provided !!"<< DEF << std::endl;
     else {
-        BitcoinExchange btc(av[1]);
+        try{
+            BitcoinExchange btc(av[1]);
+            btc.readFile();
+        }catch (std::exception& e){
+            std::cout << "main : " << e.what() << std::endl;
+        }
     }
 }

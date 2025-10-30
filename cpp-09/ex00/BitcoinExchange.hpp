@@ -1,4 +1,4 @@
-#pragma once
+ #pragma once
 /*
 valid lien "date | value
 valid date Year-Month-Day
@@ -10,6 +10,7 @@ valid value : float or uint  0 <= value <= 1000
 #include<iostream>
 #include<map>
 #include<algorithm>
+#include<utility>
 
 class BitcoinExchange{
     private :
