@@ -13,21 +13,21 @@ valid value : float or uint  0 <= value <= 1000
 
 class BitcoinExchange{
     private :
-        BitcoinExchange();
-        std::map<std::string , float> pricesDataBase;
-        std::ifstream& file;
+    std::map<std::string , float> pricesDataBase;
+    std::ifstream file;
+    BitcoinExchange();
     public :
         class BadInputException : public std::exception {
             public :
                 const char* what() const throw();
         };
 
-        BitcoinExchange(std::string&);
+        BitcoinExchange(char * path);
         BitcoinExchange(const BitcoinExchange&);
         ~BitcoinExchange();
         BitcoinExchange& operator=(const BitcoinExchange&);
         
-        void openFile(std::string);
+        // void openFile(std::string);
         void readFile() ;
         std::pair<std::string , float> parseLine(std::string&);
 };

@@ -8,9 +8,10 @@
 #include "BitcoinExchange.hpp"
 
 int main(int ac , char *av[]){
+    // (void)av;
     if(ac != 2 )
         std::cerr << RED << " no file provided !!"<< DEF << std::endl;
     else {
-        BitcoinExchange btc;
+        BitcoinExchange btc(av[1]);
     }
 }
