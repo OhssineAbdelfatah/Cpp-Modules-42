@@ -14,7 +14,8 @@ int main(int ac , char *av[]){
     else {
         try{
             BitcoinExchange btc(av[1]);
-            btc.readFile();
+            // btc.readInputFile();
+            btc.readBaseFile();
         }catch (std::exception& e){
             std::cout << "main : " << e.what() << std::endl;
         }
