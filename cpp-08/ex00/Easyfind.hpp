@@ -1,7 +1,7 @@
 #ifndef EASYFIND_HPP
 #define EASYFIND_HPP
 
-#define ERROR 1
+// #define ERROR 1
 
 template <typename T>
 

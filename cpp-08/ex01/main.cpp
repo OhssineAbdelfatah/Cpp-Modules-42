@@ -9,7 +9,7 @@ void tryOverFlowNumbers(){
     Span sp(size);
 
     try{
-        for(int i = size+1 ; i > 0 ; i-- )
+        for(int i = 0 ; i < size ; i++ )
             sp.addNumber(rand() );
     }
     catch(const Span::SpanOverflowException &e){
@@ -33,25 +33,29 @@ void tryGetSpanSingleElem(){
 
 }
 
-void testAddNumbers(){
-  std::vector<int> range;
-    range.push_back(1);
-    range.push_back(2);
-    range.push_back(5);
-    range.push_back(7);
-    
-    std::vector<int> range1;
-    range1.push_back(1);
-    range1.push_back(2);
-    range1.push_back(5);
-    range1.push_back(7);
-    range.insert(range.end(), range1.begin(), range1.end());
-    std::cout << "start print vector" << std::endl;
-    for (std::vector<int>::iterator it = range.begin() ; it != range.end() ; it++ )
-    std::cout <<*it << " " ;
-    std::cout << "end print vector" << std::endl;
-}
 
+void addRange(){
+    Span sp(10);
+    sp.addNumber(6);
+    sp.addNumber(3);
+    sp.addNumber(17);
+    sp.addNumber(9);
+    sp.addNumber(90);
+    sp.addNumber(11);
+
+    std::vector<int> rng;
+    rng.push_back(111);
+    rng.push_back(111);
+    rng.push_back(110);
+    rng.push_back(1110);
+    rng.push_back(11101);
+    try{
+        sp.addNumbers(rng.begin(), rng.end());
+    }catch (std::exception &e)
+    {
+        std::cout << std::endl << e.what() << std::endl;
+    }
+}
 int main1()
 {
     Span sp = Span(5);
@@ -66,8 +70,8 @@ int main1()
 }
 
 int main(){
-    // tryOverFlowNumbers();
-    // tryGetSpanSingleElem();
-    // main1();
-    testAddNumbers();
+    tryOverFlowNumbers();
+    tryGetSpanSingleElem();
+    main1();
+    addRange();
 }
