@@ -23,8 +23,12 @@ class BitcoinExchange{
     BitcoinExchange();
     public :
         class BadInputException : public std::exception {
+            private :
+                std::string _mssg;
             public :
                 const char* what() const throw();
+                BadInputException(std::string mssg);
+                 virtual ~BadInputException() throw();
         };
 
         BitcoinExchange(char * path);
@@ -35,5 +39,6 @@ class BitcoinExchange{
         // void openFile(std::string);
         void readInputFile() ;
         void readBaseFile() ;
-        std::pair<std::string , float> parseLine(std::string&, char );
+        std::pair<std::string , float> parseLineInput(std::string&, char );
+        std::pair<std::string , float> parseLineBase(std::string&, char );
 };
