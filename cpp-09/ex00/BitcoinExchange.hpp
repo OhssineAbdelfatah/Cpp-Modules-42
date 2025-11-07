@@ -41,4 +41,5 @@ class BitcoinExchange{
         void readBaseFile() ;
         std::pair<std::string , float> parseLineInput(std::string&, char );
         std::pair<std::string , float> parseLineBase(std::string&, char );
+        void checkExt(std::string , std::string );
 };

@@ -5,9 +5,13 @@ BitcoinExchange::BitcoinExchange(){}
 BitcoinExchange::BitcoinExchange(char *path) {
     try{
         fileBase.open("data.csv", std::ios::in);
+        checkExt(path, ".csv");
         fileInput.open(path, std::ios::in);
+        if(fileInput.fail() || fileBase.fail())
+            throw BitcoinExchange::BadInputException("...");
     }catch (std::exception& e){
-        std::cout << e.what() << std::endl;
+        std::cout << "Failed to open file : " << e.what() << std::endl;
+        std::exit(EXIT_FAILURE);
     }
 }
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& obj){
@@ -20,11 +24,8 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& obj){
     }
     return *this;
 }
+
 BitcoinExchange::~BitcoinExchange(){}
-
-// void BitcoinExchange::openFile(std::string path){
-
-// }
 
 std::pair<std::string , float> BitcoinExchange::parseLineInput(std::string& line, char sep){
     std::string token[2];
@@ -84,13 +85,11 @@ std::pair<std::string , float> BitcoinExchange::parseLineBase(std::string& line,
     => tooLargeNumber 
 */
 void BitcoinExchange::readInputFile(){
-    
     std::string line;
-    std::getline(fileInput, line);
-    std::cout << "0 " << line << std::endl;
-
-
+    // std::getline(fileInput, line);
     while( std::getline(fileInput, line)){
+        if(line.empty())
+            throw BitcoinExchange::BadInputException("Empty file");
         try{
             std::pair<std::string, float> obj = parseLineInput(line, '|');
             std::map<std::string, float>::iterator elem = pricesDataBase.find(obj.first);
@@ -105,7 +104,7 @@ void BitcoinExchange::readInputFile(){
                 }
             }
         }catch (std::exception& e){
-            std::cout <<"input Error : " << e.what() << std::endl;
+            std::cout <<"Input Error : " << e.what() << std::endl;
         }
     }
 }
@@ -121,9 +120,7 @@ void BitcoinExchange::readInputFile(){
 void BitcoinExchange::readBaseFile(){
     
     std::string line;
-    std::getline(fileBase, line);
-    std::cout << "0 " << line << std::endl;
-
+    // std::getline(fileBase, line);
 
     while( std::getline(fileBase, line)){
         std::pair<std::string, float> obj = parseLineBase(line, ',');
@@ -140,3 +137,10 @@ const char* BitcoinExchange::BadInputException::what() const throw(){
 
 BitcoinExchange::BadInputException::BadInputException(std::string mssg) :_mssg(mssg){}
 BitcoinExchange::BadInputException::~BadInputException() throw() {}
+void BitcoinExchange::checkExt(std::string path, std::string ext){
+    if(ext.size() > path.size() || path.empty() || ext.empty())
+        throw BitcoinExchange::BadInputException("extension error (.csv)");
+    if ( (&path[path.size() - 4]) != ext )
+        throw BitcoinExchange::BadInputException("extension error (.csv)");
+    return ;
+}

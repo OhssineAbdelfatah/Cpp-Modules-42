@@ -11,7 +11,7 @@ int main(int ac , char *av[]){
   /*   (void)av;
     (void)ac; */
     if(ac != 2 )
-        std::cerr << RED << " no file provided !!"<< DEF << std::endl;
+        std::cerr << RED << "No file provided !!"<< DEF << std::endl;
     else {
         try{
             BitcoinExchange btc(av[1]);
