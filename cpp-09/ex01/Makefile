@@ -1,10 +1,10 @@
 CC = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address -g
-SRC = main.cpp BitcoinExchange.cpp
-HDR =  BitcoinExchange.hpp
+SRC = main.cpp RPN.cpp
+HDR =  RPN.hpp
 OBJ = $(SRC:.cpp=.o)
 
-NAME = btc
+NAME = RPN
 
 all: $(NAME)
 
