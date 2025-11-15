@@ -3,13 +3,16 @@
 
 #include<list>
 #include<string>
+#include<iostream>
+#include<algorithm>
 
 class RPN {
 private:
     std::list<char> tokens;
-
+    std::string data;
 public:
     RPN();
+    RPN(char *);
     ~RPN();
     RPN(const RPN& other);
     RPN& operator=(const RPN& other);
@@ -25,6 +28,7 @@ public:
 
 
     void parseInput();
+    bool validELem(std::string , int);
 
 };
 
