@@ -14,7 +14,7 @@ all : $(NAME)
 %.o : %.cpp $(HEADERS)
 	$(CC)  $(CPPFLAGS) -c  $< -o $@
 
-$(NAME) : $(OBJ) $(HEADERS)
+$(NAME) : $(OBJ)
 	$(CC) $(CPPFLAGS) -o $@ $^
 
 clean :
