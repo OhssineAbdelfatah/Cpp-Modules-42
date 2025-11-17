@@ -1,25 +1,29 @@
 CC = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address -g
-SRC = main.cpp RPN.cpp
-HDR =  RPN.hpp
-OBJ = $(SRC:.cpp=.o)
+
+CPPFLAGS = -Wall -Werror -Wextra -std=c++98 -fsanitize=address -g
+
+CPPFILES = main.cpp RPN.cpp goCrazy.cpp
+HEADERS = MutantStack.hpp RPN.hpp
+TEMPLATE = MutantStack.tpp
+
+OBJ = $(CPPFILES:.cpp=.o)
 
 NAME = RPN
 
-all: $(NAME)
+all : $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
+$(NAME) : $(OBJ)
+	$(CC) $(CPPFLAGS) -o $@ $^
 
-%.o: %.cpp $(HDR)
-	$(CC) $(CPPFLAGS) -c $< -o $@
+%.o:%.cpp $(TEMPLATE) $(HEADERS)
+	$(CC)  $(CPPFLAGS) -c  $< -o $@
 
-clean:
-	rm -f $(OBJ)
+clean :
+	rm -rf  $(OBJ)
 
-fclean: clean
-	rm -f $(NAME)
+fclean : clean
+	rm -rf $(NAME)
 
-re: fclean all
+re : fclean all
 
-.PHONY: all clean fclean re
+.PHONY : all clean fclean re

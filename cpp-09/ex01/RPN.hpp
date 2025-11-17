@@ -1,18 +1,20 @@
 #ifndef RPN_HPP
 #define RPN_HPP
 
-#include<list>
+#include<stack>
 #include<string>
 #include<iostream>
 #include<algorithm>
-
+#include"MutantStack.hpp"
+int main1() ;
 class RPN {
 private:
-    std::list<char> tokens;
+    MutantStack<int> digits;
     std::string data;
 public:
     RPN();
     RPN(char *);
+    RPN(const std::string);
     ~RPN();
     RPN(const RPN& other);
     RPN& operator=(const RPN& other);
@@ -29,6 +31,7 @@ public:
 
     void parseInput();
     bool validELem(std::string , int);
+    void printStack();
 
 };
 
