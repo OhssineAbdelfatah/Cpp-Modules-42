@@ -2,6 +2,10 @@
 #define PMERGEME_HPP
 #include<string>
 #include<vector>
+#include<iostream>
+#include<cstring>
+#include<algorithm>
+#include<pair>
 
 class PmergeMe {
     public:
@@ -30,7 +34,6 @@ class PmergeMe {
         
         PmergeMe();
         void parseInput();
-        bool validELem(std::string str, int index);
 };
 
 #endif
