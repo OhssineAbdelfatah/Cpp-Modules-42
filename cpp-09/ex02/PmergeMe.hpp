@@ -5,7 +5,8 @@
 #include<iostream>
 #include<cstring>
 #include<algorithm>
-#include<pair>
+#include<utility>
+
 
 class PmergeMe {
     public:
@@ -34,6 +35,7 @@ class PmergeMe {
         
         PmergeMe();
         void parseInput();
+        void test(std::string);
 };
 
 #endif

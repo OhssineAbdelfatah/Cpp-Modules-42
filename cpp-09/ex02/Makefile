@@ -1,7 +1,7 @@
 CC = c++
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address -g
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 # SRC = main.cpp PmergeMe.cpp
-SRC = main.cpp
+SRC = main.cpp PmergeMe.cpp
 HDR =  PmergeMe.hpp
 OBJ = $(SRC:.cpp=.o)
 
