@@ -10,8 +10,8 @@ int main(int ac , char *av[])
 {
     if(ac == 2 ){
         // program logic
-        main1(); 
-        // RPN rpn(av[1]); 
+        // main1(); 
+        RPN rpn(av[1]); 
     (void)av;
     }else 
         std::cerr << "Error : no input provided !"<< std::endl;
