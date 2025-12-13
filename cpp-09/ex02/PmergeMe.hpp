@@ -1,6 +1,7 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 #include<string>
+#include<sstream>
 #include<vector>
 #include<iostream>
 #include<cstring>
