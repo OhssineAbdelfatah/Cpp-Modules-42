@@ -10,14 +10,6 @@
 
 
 class PmergeMe {
-    public:
-        PmergeMe(char** ,int );
-        ~PmergeMe();
-
-        PmergeMe(const PmergeMe& other);
-        PmergeMe& operator=(const PmergeMe& other);
-        void stroreSeq();
-        
         
         
     private:
@@ -35,8 +27,14 @@ class PmergeMe {
         };
         
         PmergeMe();
-        void parseInput();
-        void test(std::string);
+        void stroreSeq();
+    public:
+        PmergeMe(char** ,int );
+        ~PmergeMe();
+
+        PmergeMe(const PmergeMe& other);
+        PmergeMe& operator=(const PmergeMe& other);
+        
 };
 
 #endif
