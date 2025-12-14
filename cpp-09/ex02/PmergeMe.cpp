@@ -58,7 +58,7 @@ void PmergeMe::stroreSeq(){
             std::istringstream(value) >> ii;
             std::ostringstream test ;
             test << ii;
-
+            value = value.substr(value.find_first_not_of('0'));
             if(test.str().size() != ((value[0] == '+') ? value.size() -1 : value.size()))
                 throw PmergeMe::BadInputException("Number overflow");
             _seqVec.push_back(ii);
