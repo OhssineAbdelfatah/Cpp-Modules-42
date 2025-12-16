@@ -15,7 +15,9 @@ class PmergeMe {
     private:
         std::vector<std::string> _seq;
         std::vector<int> _seqVec;
+        std::vector<std::pair<int, int> > _seqVecPair;
         int nbrArr;
+        int RemindedInt;
 
         class BadInputException : public std::exception {
             private :
@@ -26,10 +28,15 @@ class PmergeMe {
                 virtual ~BadInputException() throw();
         };
         
-        PmergeMe();
-        void stroreSeq();
+        void stroreSeqVect();
+        void creatVectPairs();
+        void SortVectPairs();
+
+
     public:
-        PmergeMe(char** ,int );
+        PmergeMe();
+        void MergeInsertVect(char**args ,int ac);
+        void MergeInsertDque(char**args ,int ac);
         ~PmergeMe();
 
         PmergeMe(const PmergeMe& other);

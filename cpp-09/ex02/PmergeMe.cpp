@@ -23,20 +23,7 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
     return *this;
 }
 
-PmergeMe::PmergeMe(char**args ,int ac):  nbrArr(ac-1){
-    // Constructor implementation
-    for(int i = 0; i < nbrArr; i++){
-        // empty string checked here
-        if(args && strlen(args[i]) == 0)
-            continue;
-        _seq.push_back(args[i]);
-    }
-    stroreSeq();
-}
-
-
-
-void PmergeMe::stroreSeq(){
+void PmergeMe::stroreSeqVect(){
     std::string set("0123456789+");
     std::vector<std::string>::iterator token = _seq.begin();
     for(; token != _seq.end() ; token++){
@@ -51,7 +38,7 @@ void PmergeMe::stroreSeq(){
             // std::cout << "end["<< end << "]" << std::endl;
             int size = end - start;
             std::string value = token->substr(start , size);
-            std::cout << "value ["<< value <<"]"<< std::endl;
+            // std::cout << "value ["<< value <<"]"<< std::endl;
             if (value.find_first_not_of(set) != std::string::npos )
                 throw PmergeMe::BadInputException("Bad input...");
             int ii;
@@ -66,14 +53,70 @@ void PmergeMe::stroreSeq(){
             _seqVec.push_back(ii);
             start = end;
             if(( start = token->find_first_not_of(' ', start))  == std::string::npos ){
-                std::cout << "Did i breaked !! " << std::endl;
+                // std::cout << "Did i breaked !! " << std::endl;
                 break;
             }
         }
     }
 
-    std::cout << "Print SeqVector "<< std::endl;
-    for(std::vector<int>::iterator it = _seqVec.begin() ; it != _seqVec.end() ; it++ )
-        std::cout << " >> " << *it << std::endl;
+    // std::cout << "Print SeqVector "<< std::endl;
+    // for(std::vector<int>::iterator it = _seqVec.begin() ; it != _seqVec.end() ; it++ )
+    //     // std::cout << " >> " << *it << std::endl;
 }
 
+void PmergeMe::MergeInsertVect(char**args ,int ac){
+    for(int i = 0; i < ac-1; i++){
+    // empty string checked here
+        if(args && strlen(args[i]) == 0)
+            continue;
+        _seq.push_back(args[i]);
+    }
+    stroreSeqVect();
+    /*
+        Steps :
+        1 - creatVectorPair
+        2 - SortVectorPairs
+        3 - MergeSort
+        4 - CreateMainChainAndPend
+        5 - InsertToMainChain
+    */
+   creatVectPairs();
+   SortVectPairs();
+}
+
+void PmergeMe::creatVectPairs(){
+    size_t size = _seqVec.size() / 2;
+    if(_seqVec.size() % 2 != 0)
+        RemindedInt = _seqVec[_seqVec.size()-1];
+    std::cout <<"The  sigle " << RemindedInt<< std::endl; 
+    int i = 0;
+    while(size){
+        _seqVecPair.push_back(std::pair<int, int>(_seqVec[i], _seqVec[i+1]));
+        i += 2;
+        size--;
+    }
+}
+
+void PmergeMe::SortVectPairs(){
+    std::vector<std::pair<int , int> >::iterator it = _seqVecPair.begin();
+    int tmp;
+    for (; it != _seqVecPair.end(); it++)
+    {
+        if(it->first < it->second){
+            tmp = it->first;
+            it->first = it->second;
+            it->second = tmp;
+        }
+        std::cout << "[" << it->first << " , " << it->second << "]"<< std::endl;
+    }
+}
+
+
+int MergeSort(){
+    
+}
+
+void MergeInsertDque(char**args ,int ac){
+    (void)args;
+    (void)ac;
+}   
