@@ -14,12 +14,12 @@ int main(int ac , char *av[])
             // Container 1
             timeVec = clock();
             PmergeMe vect;
-            vect.MergeInsertVect(av + 1, ac);
+            // vect.MergeInsertVect(av + 1, ac);
             timeVec = - clock() - timeVec ;
 
             //Container 2
             timeDeq = clock();
-            // PmergeMe(av+1, ac);
+            vect.MergeInsertDque(av+1, ac);
             timeDeq = - clock() - timeDeq ;
 
             // print Container 1

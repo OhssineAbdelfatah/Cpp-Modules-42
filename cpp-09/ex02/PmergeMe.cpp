@@ -25,7 +25,7 @@ void PmergeMe::MergeInsertVect(char**args ,int ac){
             continue;
         _seq.push_back(args[i]);
     }
-    stroreSeqVect();
+    storeSeqVect();
     std::cout << "Before ..." << std::endl;
     printVector(_seqVec);
 
@@ -39,7 +39,7 @@ void PmergeMe::MergeInsertVect(char**args ,int ac){
     printVector(_vectMain);
 }
 
-void PmergeMe::stroreSeqVect(){
+void PmergeMe::storeSeqVect(){
     std::string set("0123456789+");
     std::vector<std::string>::iterator token = _seq.begin();
     for(; token != _seq.end() ; token++){
@@ -178,15 +178,6 @@ void PmergeMe::generatMainPend(){
         _vectMain.push_back(_seqVecPair.at(i).first);
         _vectPend.push_back(_seqVecPair.at(i).second);
     }
-    // std::cout << "vector pairs size"<<  _seqVecPair.size() <<  std::endl;;
-    // std::vector<std::pair<int , int > >::iterator it1 = _seqVecPair.begin();
-    // for ( ; it1 != _seqVecPair.end() ; it1++)
-    //     std::cout << it1->first  << ":v:" << it1->second << std::endl;;
-    // std::cout << std::endl;
-    // std::cout << "Main"<< std::endl;
-    // printVector(_vectMain);
-    // std::cout << "Pend"<< std::endl;
-    // printVector(_vectPend);
 }
 
 void PmergeMe::creatVectPairs(){
@@ -252,22 +243,220 @@ void    PmergeMe::Merge(std::vector<std::pair<int ,int> >& vectorPiars, int star
     }
 }
 
-void MergeInsertDque(char**args ,int ac){
+void PmergeMe::MergeInsertDque(char**args ,int ac){
     for(int i = 0; i < ac-1; i++){
         if(args && strlen(args[i]) == 0)
             continue;
         _seqD.push_back(args[i]);
     }
-    stroreSeqdeq();
-    std::cout << "Before ..." << std::endl;
-    printDeque(_seqVec);
+    storeSeqDeq();
+    // std::cout << "Before ..." << std::endl;
+    // printDeque(_seqDeq);
 
     creatDeqPairs();
     SortDeqPairs();
-    MergeSortDeq(_seqVecPair, 0 , _seqVecPair.size() - 1);
+    MergeSortDeq(_seqDeqPair, 0 , _seqDeqPair.size() - 1);
     generatMainPendDeq();
     insertToMainDeq();
 
-    std::cout << "After ..." << std::endl;
-    printDeq(_vectMain);
+    // std::cout << "After ..." << std::endl;
+    printDeque(_deqMain);
+}
+
+void PmergeMe::storeSeqDeq(){
+    std::string set("0123456789+");
+    std::deque<std::string>::iterator token = _seqD.begin();
+    for(; token != _seqD.end() ; token++){
+        size_t start = 0, end = 0;
+        for(size_t i = 0 ; i < token->size() ; i++){
+            if( ( start = token->find_first_not_of(' ', start))  == std::string::npos )
+                throw PmergeMe::BadInputException("Empty String start");
+            end = token->find_first_of(' ', start);
+            if( end  == std::string::npos && start != token->size() -1)
+                end = token->size();
+            int size = end - start;
+            std::string value = token->substr(start , size);
+            if (value.find_first_not_of(set) != std::string::npos )
+                throw PmergeMe::BadInputException("Bad input...");
+            int ii;
+            std::istringstream(value) >> ii;
+            std::ostringstream test ;
+            test << ii;
+            if(ii != 0){
+                value = value.substr(value.find_first_not_of('0'));
+                if(test.str().size() != ((value[0] == '+') ? value.size() -1 : value.size()))
+                    throw PmergeMe::BadInputException("Number overflow");
+            }
+            _seqDeq.push_back(ii);
+            start = end;
+            if(( start = token->find_first_not_of(' ', start))  == std::string::npos ){
+                break;
+            }
+        }
+    }
+}
+
+void PmergeMe::printDeque(std::deque<int>& deq){
+    std::deque<int>::iterator it = deq.begin();
+    for ( ; it != deq.end() ; it++)
+        std::cout << *it << " ";
+    std::cout << std::endl;
+
+}
+
+void PmergeMe::creatDeqPairs(){
+    size_t size = _seqDeq.size() / 2;
+    int i = 0;
+    while(size){
+        _seqDeqPair.push_back(std::pair<int, int>(_seqDeq[i], _seqDeq[i+1]));
+        i += 2;
+        size--;
+    }
+}
+
+void PmergeMe::SortDeqPairs(){
+    std::deque<std::pair<int , int> >::iterator it = _seqDeqPair.begin();
+    int tmp;
+    for (; it != _seqDeqPair.end(); it++)
+    {
+        if(it->first < it->second){
+            tmp = it->first;
+            it->first = it->second;
+            it->second = tmp;
+        }
+    }
+}
+
+
+
+void PmergeMe::MergeSortDeq(std::deque<std::pair<int ,int> >& dequePiars, int start, int end)
+{
+    if(start >= end)
+        return ;
+    int mid = start + (end - start ) / 2;
+    MergeSortDeq(dequePiars, start, mid);
+    MergeSortDeq(dequePiars, mid + 1, end);
+    MergeDeq(dequePiars, start , mid , end);
+}
+
+void    PmergeMe::MergeDeq(std::deque<std::pair<int ,int> >& dequePiars, int start, int mid , int end){
+    size_t leftDeqIndex = 0 ;
+    size_t rightDeqIndex = 0 ;
+    size_t mergedDequeIndex = start ;
+
+    std::deque<std::pair<int, int > > leftDeque(dequePiars.begin() + start , dequePiars.begin() + mid + 1);
+    std::deque<std::pair<int, int > > rightdeque(dequePiars.begin() + mid + 1 , dequePiars.begin() + end + 1 );
+
+    while(leftDeqIndex < leftDeque.size() && rightDeqIndex < rightdeque.size()){
+        if(leftDeque[leftDeqIndex].first <= rightdeque[rightDeqIndex].first){
+            dequePiars[mergedDequeIndex] = leftDeque[leftDeqIndex];
+            leftDeqIndex++;
+        }else{
+            dequePiars[mergedDequeIndex] = rightdeque[rightDeqIndex];
+            rightDeqIndex++;
+        }
+        mergedDequeIndex++;
+    }
+    while(leftDeqIndex < leftDeque.size()){
+        dequePiars[mergedDequeIndex] = leftDeque[leftDeqIndex];
+        leftDeqIndex++;
+        mergedDequeIndex++;
+    }
+    while(rightDeqIndex < rightdeque.size()){
+        dequePiars[mergedDequeIndex] = rightdeque[rightDeqIndex];
+        rightDeqIndex++;
+        mergedDequeIndex++;
+    }
+}
+
+void PmergeMe::generatMainPendDeq(){
+
+    _vectMain.push_back(_seqDeqPair.at(0).second);
+    size_t i = 0;
+    for ( i = 0 ; i < _seqDeqPair.size() ; i++)
+    {
+        _deqMain.push_back(_seqDeqPair.at(i).first);
+        _deqPend.push_back(_seqDeqPair.at(i).second);
+    }
+}
+
+void PmergeMe::insertToMainDeq(){
+    generateIndexesDeq();
+
+    // std::cout << " Positions " << std::endl;
+	// std::vector<int>::iterator itt = _indexes.begin();
+    // for ( ; itt != _indexes.end() ; itt++)
+    //     std::cout << *itt << " ";
+    // std::cout << std::endl;
+
+    std::deque<int>::iterator it;
+    int target;
+    int count = 0 ;
+    int lastPos ;
+    int pos  ;
+    for ( it = _indexesDeq.begin() ; it != _indexesDeq.end() ; it++){
+        target = _deqPend.at( *it - 1 );
+        lastPos = *it + count;
+        pos = binarySearchDeq(_deqMain, target , 0 , lastPos);
+        _deqMain.insert(_deqMain.begin() + pos , target);
+    }
+
+    if(_seqVec.size() % 2 != 0){
+        target = _seqVec.at(_seqVec.size() - 1);
+        pos = binarySearchDeq(_deqMain, target , 0 , _deqMain.size() - 1 );
+        _deqMain.insert(_deqMain.begin() + pos , target);
+    }
+}
+
+void PmergeMe::generateIndexesDeq(){
+    if(_deqPend.empty())
+        return ;
+    jacobstalSequenceDeq();
+
+    size_t i = 0;
+    size_t val = 1;
+    int pos;
+    int lastPos = 1;
+    while(i < _jsIndexes.size()){
+        val = _jsIndexes.at(i);
+        _indexesDeq.push_back(val);
+        pos = val - 1;
+        while(pos > lastPos){
+            _indexesDeq.push_back(pos);
+            pos--;
+        }
+        lastPos = val;
+        i++;
+    }
+    while (val++ < this->_deqPend.size())
+		this->_indexesDeq.push_back(val);
+}
+
+void PmergeMe::jacobstalSequenceDeq(){
+    int index = 3;
+    int size = _deqPend.size();
+    int jacobStalIndex;
+    while( (jacobStalIndex = jacobstalIndex(index)) < size - 1 ){
+        _jsIndexesDeq.push_back(jacobStalIndex);
+        index++;
+    }
+
+}
+
+int PmergeMe::binarySearchDeq(std::deque<int> array, int target , int start , int end){
+    int middle;
+
+    while(start <= end){
+        middle = start + (end - start ) / 2;
+        if( target == array.at(middle) )
+            return middle;
+        if ( target > array.at(middle) )
+            start = middle + 1;
+        else
+            end = middle - 1;
+    }
+    if (target > array.at(middle))
+		return ( middle + 1 );
+	else
+		return ( middle );
 }

@@ -25,21 +25,15 @@ class PmergeMe {
         std::vector<int> _jsIndexes;
 
         std::deque<std::string> _seqD;
-        std::vector<int> _seqDeq;
-        std::vector<std::pair<int, int> > _seqDeqPair;
-        std::vector<int> _deqMain;
-        std::vector<int> _deqPend;
+        std::deque<int> _seqDeq;
+        std::deque<std::pair<int, int> > _seqDeqPair;
+        std::deque<int> _deqMain;
+        std::deque<int> _deqPend;
+        std::deque<int> _indexesDeq;
+        std::deque<int> _jsIndexesDeq;
 
-        class BadInputException : public std::exception {
-            private :
-                std::string _mssg;
-            public :
-                const char* what() const throw();
-                BadInputException(std::string mssg);
-                virtual ~BadInputException() throw();
-        };
         
-        void stroreSeqVect();
+        void storeSeqVect();
         void creatVectPairs();
         void SortVectPairs();
         void MergeSort(std::vector<std::pair<int ,int> >& , int , int);
@@ -51,20 +45,27 @@ class PmergeMe {
         int jacobstalIndex(int index);
         int binarySearch(std::vector<int> , int, int, int);
         void printVector(std::vector<int>& vect);
-
-        void stroreSeqDeq();
+        
+        void storeSeqDeq();
         void creatDeqPairs();
         void SortDeqPairs();
-        void MergeSortDeq(std::Deque<std::pair<int ,int> >& , int , int);
-        void MergeDeq(std::Deque<std::pair<int ,int> >& ,int , int  , int );
+        void MergeSortDeq(std::deque<std::pair<int ,int> >& , int , int);
+        void MergeDeq(std::deque<std::pair<int ,int> >& ,int , int  , int );
         void generatMainPendDeq();
         void insertToMainDeq();
-        int binarySearchDeq(std::Deque<int> , int, int, int);
-        void printDeque(std::Deque<int>& vect);
+        int binarySearchDeq(std::deque<int> , int, int, int);
+        void printDeque(std::deque<int>& );
+        void generateIndexesDeq();
+        void jacobstalSequenceDeq();
 
-
-
-
+        class BadInputException : public std::exception {
+            private :
+                std::string _mssg;
+            public :
+                const char* what() const throw();
+                BadInputException(std::string mssg);
+                virtual ~BadInputException() throw();
+        };
 
     public:
         PmergeMe();
