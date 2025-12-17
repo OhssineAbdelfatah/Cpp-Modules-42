@@ -80,8 +80,8 @@ void PmergeMe::MergeInsertVect(char**args ,int ac){
         _seq.push_back(args[i]);
     }
     stroreSeqVect();
-    std::cout << "Before ..." << std::endl;
-    printVector(_seqVec);
+    // std::cout << "Before ..." << std::endl;
+    // printVector(_seqVec);
     
     creatVectPairs();
     SortVectPairs();
@@ -96,7 +96,7 @@ void PmergeMe::MergeInsertVect(char**args ,int ac){
 
     generatMainPend();
     insertToMain();
-    std::cout << "After ..." << std::endl;
+    // std::cout << "After ..." << std::endl;
     printVector(_vectMain);
 }
 
@@ -236,7 +236,7 @@ void PmergeMe::SortVectPairs(){
             it->first = it->second;
             it->second = tmp;
         }
-        std::cout << "[" << it->first << " , " << it->second << "]"<< std::endl;
+        // std::cout << "[" << it->first << " , " << it->second << "]"<< std::endl;
     }
 }
 
@@ -258,8 +258,8 @@ void    PmergeMe::Merge(std::vector<std::pair<int ,int> >& vectorPiars, int star
     size_t rightVectIndex = 0 ;
     size_t mergedVectorIndex = start ;
 
-    std::cout << "start " << start << std::endl;
-    std::vector<std::pair<int, int > > leftVector(vectorPiars.begin() , vectorPiars.begin() + mid + 1);
+    // std::cout << "start " << start << std::endl;
+    std::vector<std::pair<int, int > > leftVector(vectorPiars.begin() + start , vectorPiars.begin() + mid + 1);
     std::vector<std::pair<int, int > > rightVector(vectorPiars.begin() + mid + 1 , vectorPiars.begin() + end + 1 );
 
     // // debug 
@@ -285,16 +285,12 @@ void    PmergeMe::Merge(std::vector<std::pair<int ,int> >& vectorPiars, int star
         }
         mergedVectorIndex++;
     }
-    std::cout << "***mergedIndex " << mergedVectorIndex << std::endl;
     while(leftVectIndex < leftVector.size()){
-        std::cout << "leftIndex " << leftVectIndex << std::endl;
         vectorPiars[mergedVectorIndex] = leftVector[leftVectIndex];
         leftVectIndex++;
-        // mergedVectorIndex++;
+        mergedVectorIndex++;
     }
     while(rightVectIndex < rightVector.size()){
-        // std::cout << "***mergedIndex " << mergedVectorIndex << std::endl;
-        std::cout << "rightIndex " << rightVectIndex << std::endl;
         vectorPiars[mergedVectorIndex] = rightVector[rightVectIndex];
         rightVectIndex++;
         mergedVectorIndex++;
