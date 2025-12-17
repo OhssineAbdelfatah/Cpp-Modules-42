@@ -94,7 +94,7 @@ void BitcoinExchange::readInputFile(){
             std::pair<std::string, float> obj = parseLineInput(line, '|');
             std::map<std::string, float>::iterator elem = pricesDataBase.find(obj.first);
             if(elem != pricesDataBase.end())
-                std::cout << elem->first << " => " << elem->second << " = " <<  obj.second * elem->second << std::endl;
+                std::cout << elem->first << " => " << elem->second << " * " << obj.second << " = " <<  obj.second * elem->second << std::endl;
             else{
                 elem = pricesDataBase.upper_bound(obj.first) ;
                 if( elem != pricesDataBase.end()){

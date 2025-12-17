@@ -14,7 +14,7 @@ int main(int ac , char *av[])
             // Container 1
             timeVec = clock();
             PmergeMe vect;
-            // vect.MergeInsertVect(av + 1, ac);
+            vect.MergeInsertVect(av + 1, ac);
             timeVec = - clock() - timeVec ;
 
             //Container 2
@@ -22,13 +22,13 @@ int main(int ac , char *av[])
             vect.MergeInsertDque(av+1, ac);
             timeDeq = - clock() - timeDeq ;
 
-            // print Container 1
-            // before sort
-            // after sort
+            std::cout << "before ... " ;
+            vect.printVector(vect.getVectSeq());
+            std::cout << "after ... " ;
+            vect.printVector(vect.getVect());
 
-            // print Container 2
-            // before sort 
-            // after sort
+            std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector : " << (double)timeVec  << " ms" << std::endl;
+		    std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque : " << (double)timeDeq  << " ms" << std::endl;
 
         }catch (std::exception& e){
             std::cout << "" << e.what() << std::endl;

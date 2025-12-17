@@ -26,17 +26,11 @@ void PmergeMe::MergeInsertVect(char**args ,int ac){
         _seq.push_back(args[i]);
     }
     storeSeqVect();
-    std::cout << "Before ..." << std::endl;
-    printVector(_seqVec);
-
     creatVectPairs();
     SortVectPairs();
     MergeSort(_seqVecPair, 0 , _seqVecPair.size() - 1);
     generatMainPend();
     insertToMain();
-
-    std::cout << "After ..." << std::endl;
-    printVector(_vectMain);
 }
 
 void PmergeMe::storeSeqVect(){
@@ -72,7 +66,7 @@ void PmergeMe::storeSeqVect(){
     }
 }
 
-void PmergeMe::printVector(std::vector<int>& vect){
+void PmergeMe::printVector(std::vector<int> vect){
     std::vector<int>::iterator it = vect.begin();
     for ( ; it != vect.end() ; it++)
         std::cout << *it << " ";
@@ -250,17 +244,12 @@ void PmergeMe::MergeInsertDque(char**args ,int ac){
         _seqD.push_back(args[i]);
     }
     storeSeqDeq();
-    // std::cout << "Before ..." << std::endl;
-    // printDeque(_seqDeq);
-
     creatDeqPairs();
     SortDeqPairs();
     MergeSortDeq(_seqDeqPair, 0 , _seqDeqPair.size() - 1);
     generatMainPendDeq();
     insertToMainDeq();
 
-    // std::cout << "After ..." << std::endl;
-    printDeque(_deqMain);
 }
 
 void PmergeMe::storeSeqDeq(){
@@ -296,7 +285,7 @@ void PmergeMe::storeSeqDeq(){
     }
 }
 
-void PmergeMe::printDeque(std::deque<int>& deq){
+void PmergeMe::printDeque(std::deque<int> deq){
     std::deque<int>::iterator it = deq.begin();
     for ( ; it != deq.end() ; it++)
         std::cout << *it << " ";
@@ -459,4 +448,15 @@ int PmergeMe::binarySearchDeq(std::deque<int> array, int target , int start , in
 		return ( middle + 1 );
 	else
 		return ( middle );
+}
+
+std::vector<int> PmergeMe::getVect() const {
+    return _vectMain;
+}
+std::vector<int> PmergeMe::getVectSeq() const {
+    return _seqVec;
+}
+
+std::deque<int> PmergeMe::getDeque() const {
+    return _deqMain;
 }

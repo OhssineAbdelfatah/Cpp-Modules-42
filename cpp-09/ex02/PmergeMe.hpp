@@ -14,8 +14,6 @@ class PmergeMe {
         
         
     private:
-
-        int nbrArr;
         std::vector<std::string> _seq;
         std::vector<int> _seqVec;
         std::vector<std::pair<int, int> > _seqVecPair;
@@ -44,7 +42,6 @@ class PmergeMe {
         void jacobstalSequence();
         int jacobstalIndex(int index);
         int binarySearch(std::vector<int> , int, int, int);
-        void printVector(std::vector<int>& vect);
         
         void storeSeqDeq();
         void creatDeqPairs();
@@ -54,7 +51,6 @@ class PmergeMe {
         void generatMainPendDeq();
         void insertToMainDeq();
         int binarySearchDeq(std::deque<int> , int, int, int);
-        void printDeque(std::deque<int>& );
         void generateIndexesDeq();
         void jacobstalSequenceDeq();
 
@@ -68,6 +64,12 @@ class PmergeMe {
         };
 
     public:
+        std::deque<int> getDeque() const ;
+        std::vector<int> getVect() const ;
+        std::vector<int> getVectSeq() const ;
+
+        void printDeque(std::deque<int> );
+        void printVector(std::vector<int> );
         PmergeMe();
         void MergeInsertVect(char**args ,int ac);
         void MergeInsertDque(char**args ,int ac);
