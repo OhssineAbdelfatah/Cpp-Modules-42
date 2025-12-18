@@ -30,7 +30,10 @@ BitcoinExchange::~BitcoinExchange(){}
 std::pair<std::string , float> BitcoinExchange::parseLineInput(std::string& line, char sep){
     std::string token[2];
     std::string date[3];
-
+    std::string validCHar("0123456789- ");
+    validCHar.push_back(sep);
+    if(line.find_first_not_of(validCHar) != std::string::npos)
+        throw BitcoinExchange::BadInputException("bad input");
     token[0] = line.substr(0 , line.find(sep));
     token[0] = token[0].substr(0 , token[0].find(' '));
     if(line.find(sep) == std::string::npos)
@@ -47,6 +50,16 @@ std::pair<std::string , float> BitcoinExchange::parseLineInput(std::string& line
     if(date[1].size() > 2 || date[2].size() > 2)
         throw BitcoinExchange::BadInputException("bad date format");
     float value  = std::strtod(token[1].c_str(), NULL);
+    std::stringstream ss[3];
+    ss[0] << date[0];
+    ss[1] << date[1];
+    ss[2] << date[2];
+    int d[3];
+    ss[0] >> d[0];
+    ss[1] >> d[1];
+    ss[2] >> d[2];
+    if(d[0] == 0 || d[1] == 0 || d[2] == 0)
+        throw BitcoinExchange::BadInputException("zero filed ");
     if(value > 1000  )
         throw BitcoinExchange::BadInputException("too large value");
     else if (value < 0 )
@@ -93,14 +106,17 @@ void BitcoinExchange::readInputFile(){
         try{
             std::pair<std::string, float> obj = parseLineInput(line, '|');
             std::map<std::string, float>::iterator elem = pricesDataBase.find(obj.first);
+            std::string targetDatePrintFormat(obj.first);
+            targetDatePrintFormat.insert(targetDatePrintFormat.begin() + 4 , '-');
+            targetDatePrintFormat.insert(targetDatePrintFormat.begin() + 7 , '-');
             if(elem != pricesDataBase.end())
-                std::cout << elem->first << " => " << elem->second << " * " << obj.second << " = " <<  obj.second * elem->second << std::endl;
+                std::cout << targetDatePrintFormat << " => " << elem->second << " = " <<  obj.second * elem->second << std::endl;
             else{
                 elem = pricesDataBase.upper_bound(obj.first) ;
                 if( elem != pricesDataBase.end()){
                     if( elem != pricesDataBase.begin())
                         --elem;
-                    std::cout << elem->first << " => " << elem->second << " = " <<  obj.second * elem->second << std::endl;
+                    std::cout << targetDatePrintFormat << " => " << elem->second << " = " <<  obj.second * elem->second << std::endl;
                 }
             }
         }catch (std::exception& e){
